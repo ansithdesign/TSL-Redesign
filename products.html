@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>TSL Contemporary</title>
+<title>TSL Products</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1968,58 +1968,259 @@ header.hd > .hpart { margin-top: 0; }
 /* ===== END OPTION 1 HERO PHOTO ===== */
 </style>
 <div id="app"></div>
+<style>
+/* ===== products listing page ===== */
+#app .pl-h1 { margin: 16px 0 18px; max-width: 14ch; text-align: left; }
+#app header.hd.pl-hd { min-height: 0; display: block; max-width: none; margin: 0; }
+.pl-head { padding-block: 28px 56px; }
+.pl-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px; align-items: end; }
+.pl-kick { font: 500 12px var(--fm); letter-spacing: .1em; text-transform: uppercase; color: #9EC3E6; }
+.pl-h1 { font-size: clamp(40px, 5vw, 72px); line-height: .98; max-width: 13ch; margin: 16px 0 18px; }
+.pl-sub { color: #D0DAE8; max-width: 54ch; font-size: 16px; }
+.pl-stats { display: flex; gap: 36px; }
+.pl-stats div { display: flex; flex-direction: column; gap: 4px; }
+.pl-stats b { font: 300 44px/1 var(--fd); font-stretch: 112%; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.pl-stats span { font: 500 11px var(--fm); letter-spacing: .1em; text-transform: uppercase; color: #A9B7C6; }
+.pl-sw { display: inline-flex; padding: 4px; gap: 2px; border: 1px solid var(--ln); border-radius: var(--rs); background: #fff; flex: none; }
+.pl-sw button { display: inline-flex; align-items: center; gap: 9px; height: 36px; padding: 0 16px; border: 0; border-radius: 5px; background: transparent; color: var(--ink); font: 600 14px var(--fb); cursor: pointer; transition: background .25s, color .25s; white-space: nowrap; }
+.pl-sw button:hover { background: var(--at); }
+.pl-sw button[aria-selected="true"] { background: var(--ac); color: #fff; }
+.pl-sw small { font: 600 12px var(--fm); font-variant-numeric: tabular-nums; opacity: .65; }
+
+.pl-bar { position: sticky; top: var(--pt, 0px); z-index: 30; background: rgba(245,248,252,.94); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid var(--ln); transition: top .45s cubic-bezier(.2,.8,.2,1); }
+.pl-bar-in { display: flex; align-items: center; gap: 12px; padding-block: 14px; flex-wrap: wrap; }
+.pl-s { position: relative; flex: 1 1 320px; max-width: 520px; display: flex; align-items: center; }
+.pl-s > .i { position: absolute; left: 14px; font-size: 18px; color: var(--mu); pointer-events: none; }
+.pl-s input { width: 100%; height: 46px; padding: 0 44px 0 42px; border: 1px solid var(--ln); border-radius: var(--rs); background: #fff; color: var(--ink); font: 400 15px var(--fb); }
+.pl-s input::placeholder { color: var(--mu); }
+.pl-s input:focus { outline: 2px solid var(--ac); outline-offset: 1px; border-color: transparent; }
+.pl-s kbd { position: absolute; right: 12px; font: 500 12px var(--fm); color: var(--mu); border: 1px solid var(--ln); border-radius: 5px; padding: 2px 7px; background: var(--pa); }
+.pl-s input:not(:placeholder-shown) ~ kbd { display: none; }
+.pl-sp { flex: 1 1 0; min-width: 0; }
+.pl-sel { position: relative; display: flex; align-items: center; }
+.pl-sel select { appearance: none; -webkit-appearance: none; height: 46px; padding: 0 40px 0 16px; border: 1px solid var(--ln); border-radius: var(--rs); background: #fff; color: var(--ink); font: 500 14px var(--fb); cursor: pointer; }
+.pl-sel select:focus-visible { outline: 2px solid var(--ac); outline-offset: 2px; }
+.pl-sel .i { position: absolute; right: 14px; font-size: 16px; pointer-events: none; color: var(--mu); }
+.pl-lay { display: inline-flex; border: 1px solid var(--ln); border-radius: var(--rs); background: #fff; overflow: hidden; }
+.pl-lay button { width: 46px; height: 44px; border: 0; background: transparent; display: grid; place-items: center; cursor: pointer; color: var(--mu); }
+.pl-lay button .i { font-size: 19px; }
+.pl-lay button[aria-pressed="true"] { background: var(--ac); color: #fff; }
+.pl-fb { display: none; align-items: center; gap: 10px; height: 46px; padding: 0 16px; border: 1px solid var(--ln); border-radius: var(--rs); background: #fff; font: 600 14px var(--fb); cursor: pointer; }
+.pl-fb .i { font-size: 18px; }
+.pl-fb b { min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--ac); color: #fff; font-size: 12px; display: inline-grid; place-items: center; }
+.pl-fb b[hidden] { display: none; }
+
+.pl-body { display: grid; grid-template-columns: 252px minmax(0, 1fr); gap: 56px; align-items: start; padding-block: 32px 110px; }
+.pl-rail { position: sticky; top: calc(var(--pt, 0px) + 92px); max-height: calc(100vh - var(--pt, 0px) - 108px); overflow: auto; padding-right: 6px; display: flex; flex-direction: column; gap: 28px; scrollbar-width: thin; }
+.pl-sh, .pl-sf, .pl-bd { display: none; }
+.pl-fs h3 { font: 600 11px var(--fm); letter-spacing: .1em; text-transform: uppercase; color: var(--mu); margin-bottom: 10px; }
+.pl-opts { display: flex; flex-direction: column; gap: 2px; }
+.pl-opt { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; text-align: left; padding: 9px 10px; border: 0; border-radius: 6px; background: transparent; font: 400 14.5px/1.3 var(--fb); color: var(--ink); cursor: pointer; transition: background .2s; }
+.pl-opt:hover { background: var(--at); }
+.pl-opt[aria-pressed="true"] { background: var(--ac); color: #fff; }
+.pl-opt em { font: 500 12px var(--fm); font-variant-numeric: tabular-nums; color: var(--mu); }
+.pl-opt[aria-pressed="true"] em { color: #9EC3E6; }
+.pl-opt.z:not([aria-pressed="true"]) { opacity: .4; }
+.pl-ck { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 6px; font-size: 14.5px; cursor: pointer; }
+.pl-ck:hover { background: var(--at); }
+.pl-ck input { width: 17px; height: 17px; accent-color: var(--ac); margin: 0; flex: none; }
+.pl-ck em { margin-left: auto; font: 500 12px var(--fm); font-variant-numeric: tabular-nums; color: var(--mu); }
+.pl-ck.z { opacity: .4; }
+.pl-ck:has(input:focus-visible) { outline: 2px solid var(--ac); outline-offset: 1px; }
+.pl-facet { max-height: 280px; overflow: auto; }
+
+.pl-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 26px; min-height: 36px; }
+.pl-n { font-size: 15px; color: var(--mu); }
+.pl-n b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.pl-chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.pl-chip { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 10px 0 14px; border: 1px solid var(--ln); border-radius: 999px; background: #fff; font: 500 13px var(--fb); cursor: pointer; }
+.pl-chip .i { font-size: 14px; color: var(--mu); }
+.pl-chip:hover { border-color: var(--ink); }
+.pl-clear { border: 0; background: none; font: 600 13px var(--fb); color: var(--ac); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 6px 4px; }
+
+.pl-g { margin-bottom: 64px; scroll-margin-top: 150px; }
+.pl-gh { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 20px; margin-bottom: 26px; border-top: 1px solid var(--ln); }
+.pl-gh h2 { font: 400 clamp(24px, 2.4vw, 32px)/1.1 var(--fd); font-stretch: 112%; letter-spacing: -.04em; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.pl-gh h2 small { font: 500 12px var(--fm); letter-spacing: .06em; color: var(--mu); font-variant-numeric: tabular-nums; }
+.pl-gh p { font-size: 13.5px; color: var(--mu); margin-top: 6px; }
+.pl-gh img { height: 30px; width: auto; max-width: 170px; object-fit: contain; }
+
+.pl-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); gap: 36px 20px; }
+.pc { position: relative; display: flex; flex-direction: column; color: var(--ink); }
+.pc-cv { position: relative; aspect-ratio: 4 / 3.3; display: flex; align-items: center; justify-content: center; padding: 11% 22% 12%; border-radius: var(--r); background: #fff; box-shadow: 0 0 0 1px var(--ln) inset; perspective: 900px; transition: box-shadow .3s; }
+.pc-cv .bk { display: block; height: 100%; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.pc-cv .bk img { height: 100%; width: auto; max-width: 100%; object-fit: contain; filter: drop-shadow(-5px 5px 8px rgba(0,0,0,.16)); }
+.pc:hover .pc-cv .bk { transform: translateY(-8px) rotate(-2deg); }
+.pc:hover .pc-cv { box-shadow: 0 0 0 1px var(--ink) inset; }
+.pc-cv .cc { position: absolute; left: 12px; top: 12px; z-index: 2; font: 500 11px var(--fm); letter-spacing: .06em; padding: 5px 9px; border-radius: 999px; background: var(--pa); }
+.gc { display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; height: 100%; aspect-ratio: 3 / 4; padding: 12px; background: var(--gc, var(--at)); border: 1px solid rgba(15,34,52,.12); color: var(--ac); box-shadow: -5px 5px 8px rgba(0,0,0,.1); transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.pc:hover .gc { transform: translateY(-8px) rotate(-2deg); }
+.gc .i { font-size: 34px; stroke-width: 1.2; }
+.gc span { font: 600 9.5px/1.2 var(--fm); letter-spacing: .08em; text-transform: uppercase; opacity: .75; }
+.pc-b { padding: 18px 2px 0; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; flex: 1; }
+.pc-k { font: 600 11px var(--fm); letter-spacing: .07em; text-transform: uppercase; color: var(--ai); }
+.pc h3 { font: 500 17px/1.26 var(--fd); letter-spacing: -.015em; }
+.pc-t::after { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: var(--r); }
+.pc-t:hover { color: var(--ai); }
+.pc-f { display: inline-flex; align-items: center; height: 24px; padding: 0 9px; border-radius: 999px; background: var(--at); color: var(--ac); font: 600 10.5px var(--fm); letter-spacing: .06em; text-transform: uppercase; margin-top: auto; }
+.pc-r { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 2px 0; }
+.pc-r .price { font-size: 19px; }
+.pc-add { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px 0 11px; border: 0; border-radius: 999px; background: var(--ac); color: #fff; font: 600 13px var(--fb); cursor: pointer; transition: background .25s, transform .25s; }
+.pc-add .i { font-size: 16px; }
+.pc-add:hover { background: var(--ai); transform: translateY(-1px); }
+.pc-add.done { background: #1E8A5C; }
+mark { background: var(--hl); color: var(--ink); border-radius: 2px; padding: 0 1px; }
+
+.pl-rows { background: #fff; border: 1px solid var(--ln); border-radius: var(--r); overflow: hidden; }
+.pr { position: relative; display: grid; grid-template-columns: 56px minmax(0, 1fr) 128px 190px 110px 92px; gap: 18px; align-items: center; padding: 12px 18px; border-top: 1px solid var(--ln); transition: background .2s; }
+.pr:first-child { border-top: 0; }
+.pr:hover { background: var(--pa); }
+.pr.hd-r { padding-block: 10px; background: var(--pa); font: 600 11px var(--fm); letter-spacing: .1em; text-transform: uppercase; color: var(--mu); }
+.pr.hd-r:hover { background: var(--pa); }
+.pr .th { width: 56px; height: 56px; border-radius: 8px; background: var(--gc, var(--pa)); display: grid; place-items: center; padding: 6px; box-shadow: 0 0 0 1px var(--ln) inset; }
+.pr .th img { max-height: 100%; width: auto; object-fit: contain; }
+.pr .th .i { font-size: 24px; color: var(--ac); stroke-width: 1.3; }
+.pr h3 { font: 500 15.5px/1.3 var(--fd); letter-spacing: -.01em; }
+.pr .pc-t::after { border-radius: 0; }
+.pr .m { font-size: 13.5px; color: var(--mu); }
+.pr .m-s { display: none; font: 600 10.5px var(--fm); letter-spacing: .06em; text-transform: uppercase; color: var(--ai); margin-top: 4px; }
+.pr .price { justify-self: end; font-size: 16px; }
+.pr .pc-f { margin: 0; justify-self: start; }
+.pr .pc-add { justify-self: end; }
+.pr.hd-r span:nth-child(5) { justify-self: end; }
+
+.pl-empty { text-align: center; padding: 72px 24px; border: 1px dashed rgba(15,34,52,.3); border-radius: var(--r); background: #fff; }
+.pl-empty h3 { font: 400 28px/1.1 var(--fd); font-stretch: 112%; letter-spacing: -.04em; margin-bottom: 10px; }
+.pl-empty p { color: var(--mu); margin: 0 auto 22px; max-width: 44ch; }
+
+.pl-toast { position: fixed; z-index: 400; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); opacity: 0; pointer-events: none; display: flex; align-items: center; gap: 14px; max-width: calc(100vw - 32px); padding: 12px 14px 12px 20px; border-radius: 999px; background: #0A1829; color: #fff; font-size: 14px; box-shadow: 0 20px 40px -16px rgba(0,0,0,.5); transition: opacity .3s, transform .4s cubic-bezier(.2,.8,.2,1); }
+.pl-toast.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+.pl-toast span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.pl-toast a { flex: none; font-weight: 600; color: #9EC3E6; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(158,195,230,.45); }
+
+@media (max-width: 1060px) { .pr { grid-template-columns: 56px minmax(0, 1fr) 128px 110px 92px; } .pr .m-p { display: none; } .pr .m-s { display: block; } .pr.hd-r span:nth-child(4) { display: none; } .pr.hd-r span:nth-child(5) { grid-column: 4; } .pr.hd-r span:nth-child(6) { grid-column: 5; } }
+@media (max-width: 960px) {
+  .pl-top { grid-template-columns: 1fr; }
+  .pl-stats { gap: 28px; }
+  .pl-stats b { font-size: 36px; }
+  .pl-body { grid-template-columns: 1fr; padding-block: 24px 90px; }
+  .pl-fb { display: inline-flex; }
+  .pl-rail { position: fixed; left: 0; right: 0; bottom: 0; top: auto; z-index: 260; max-height: 86vh; padding: 0; gap: 0; background: #fff; border-radius: 20px 20px 0 0; transform: translateY(105%); visibility: hidden; transition: transform .45s cubic-bezier(.2,.8,.2,1), visibility 0s .45s; overflow: auto; }
+  .pl-rail.open { transform: none; visibility: visible; transition-delay: 0s; }
+  .pl-sh { display: flex; align-items: center; justify-content: space-between; padding: 18px var(--gr) 10px var(--gl); position: sticky; top: 0; background: #fff; z-index: 2; }
+  .pl-sh h2 { font: 500 22px var(--fd); letter-spacing: -.03em; }
+  .pl-x { width: 44px; height: 44px; border: 0; background: var(--pa); border-radius: 50%; display: grid; place-items: center; cursor: pointer; }
+  .pl-fs { padding: 14px var(--gr) 14px var(--gl); }
+  .pl-rail > .pl-fs + .pl-fs { border-top: 1px solid var(--ln); }
+  .pl-sf { display: block; position: sticky; bottom: 0; padding: 14px var(--gr) calc(14px + env(safe-area-inset-bottom, 0px)) var(--gl); background: #fff; border-top: 1px solid var(--ln); }
+  .pl-sf .btn { width: 100%; }
+  .pl-bd { display: block; position: fixed; inset: 0; z-index: 250; background: rgba(10,24,41,.55); opacity: 0; visibility: hidden; transition: opacity .35s, visibility 0s .35s; }
+  .pl-bd.open { opacity: 1; visibility: visible; transition-delay: 0s; }
+  .pl-sp { display: none; }
+  .pl-sw { flex: 1 1 100%; } .pl-sw button { flex: 1; justify-content: center; padding: 0 10px; }
+  .pl-s { max-width: none; flex-basis: 100%; }
+  .pl-sel { flex: 1; } .pl-sel select { width: 100%; }
+}
+@media (max-width: 720px) {
+  .pl-head { padding-bottom: 32px; }
+  .pl-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 14px; }
+  .pc h3 { font-size: 15px; }
+  .pc-add span { display: none; } .pc-add { padding: 0; width: 38px; justify-content: center; }
+  .pr { grid-template-columns: 48px minmax(0, 1fr) auto; gap: 12px; padding: 12px 14px; }
+  .pr .th { width: 48px; height: 48px; }
+  .pr .pc-f, .pr .pc-add, .pr.hd-r { display: none; }
+  .pr .m-s { display: block; }
+}
+@media (max-width: 420px) { .pl-cards { grid-template-columns: 1fr; } .pc-add span { display: inline; } .pc-add { padding: 0 14px 0 11px; width: auto; } }
+@media (prefers-reduced-motion: reduce) { .pc .bk, .gc, .pl-rail, .pl-bar, .pl-toast { transition: none !important; } .pc:hover .bk, .pc:hover .gc { transform: none; } }
+</style>
+
 <script>
 (function () {
   'use strict';
-  /* ---------- content (unchanged from the current site) ---------- */
-  var COURSES = [
-    { code: 'D08', reg: '1,495', topic: 'Team Behaviors', title: 'The Five Behaviors® Team & Personal Downloadable Kits', price: '1,345', img: 'cover-d08.jpg', alt: 'Five Behaviors Team and Personal Development kit cover' },
-    { code: 'B107', topic: 'DiSC/Personal Development', title: 'Everything DiSC® Workplace on Catalyst', price: '90', img: 'cover-b107.jpg', alt: 'Your DiSC Profile report cover' },
-    { code: 'CER3', reg: '4,695', topic: 'DiSC/Personal Development', title: 'The Everything DiSC® Certification & Catalyst Practitioner Experience', price: '3,995', img: 'cover-cer3.jpg', alt: 'Catalyst Practitioner Experience certification cover' },
-    { code: 'B101', topic: 'Sales', title: 'Everything DiSC® Sales Profile', price: '150', img: 'cover-b101.jpg', alt: 'Everything DiSC Sales Profile cover' },
-    { code: 'PI04', topic: 'Interviewing', title: 'PXT Select™', price: '295', img: 'cover-pi04.jpg', alt: 'PXT Select Comprehensive Selection Report cover' },
-    { code: 'FB1', topic: 'Team Behaviors', title: 'The Five Behaviors™ Assessment', price: '210', img: 'cover-fb1.jpg', alt: 'The Five Behaviors of a Cohesive Team report cover' },
-    { code: 'PI01', topic: 'Management', title: 'CheckPoint 360 Feedback', price: '400', img: 'cover-pi01.jpg', alt: 'Executive Competency Overview report cover' },
-    { code: 'B104', topic: 'Leadership', title: 'Everything DiSC® Work of Leaders™ Profile', price: '150', img: 'cover-b104.jpg', alt: 'Work of Leaders Profile report cover' },
-    { code: 'VP065', topic: 'Attitudes/Ethics', title: 'A.C.T.with Integrity™ (eCourse)', price: '30', img: 'cover-vp065.jpg', alt: 'A.C.T. with Integrity eCourse cover' },
-    { code: 'VP078', topic: 'Diversity', title: 'Diversity 101™ (eCourse)', price: '30', img: 'cover-vp078.jpg', alt: 'Diversity 101 eCourse cover' },
-    { code: 'VP069', topic: 'Coaching/Discipline', title: 'Courage to Coach™ (eCourse)', price: '30', img: 'cover-vp069.jpg', alt: 'Courage to Coach eCourse cover' },
-    { code: 'VP064', topic: 'Leadership', title: 'Leadership 101 (eCourse)', price: '50', img: 'cover-vp064.jpg', alt: 'Leadership 101 eCourse cover' }
-  ];
-  var TOPICS = [['Harassment', 19], ['Diversity', 12], ['Everything DiSC and personal development', 13], ['Leadership', 12], ['Management', 12], ['Hiring and interviewing', 10], ['Coaching and discipline', 8], ['Ethics and attitude', 7], ['Teams', 7], ['Sales and customer service', 6], ['Conflict resolution', 5], ['Meetings and time management', 5], ['Communication and EQ', 4], ['Legal', 2]];
-  var SERVICES = [
-    { t: 'Classes and training facilitation', d: 'Live classes and facilitated sessions for your team.', img: 'svc-classes.jpg', alt: 'Facilitator leading a class' },
-    { t: 'TAG, Training Assets Gateway', d: 'An eLearning library from Sollah for your whole organization.', img: 'svc-tag.jpg', alt: 'Person watching an online lesson on a laptop' },
-    { t: 'Executive coaching', d: 'One-to-one coaching for executives and business owners.', img: 'svc-exec.jpg', alt: 'Executive coaching conversation in a lounge' },
-    { t: 'Everything DiSC Certification', d: 'Requires the Practitioner Experience first. Bundle price $3,995.', img: 'svc-disc.jpg', alt: 'Facilitator presenting a DiSC chart to a class', p: '$2,495' },
-    { t: 'The Five Behaviors Certification', d: 'Become certified to facilitate The Five Behaviors.', img: 'svc-five.jpg', alt: 'Team discussing The Five Behaviors around a laptop', p: '$2,495' },
-    { t: 'Catalyst', d: 'Wiley\'s online platform for delivering Everything DiSC.', img: 'svc-catalyst.jpg', alt: 'Person using Catalyst on a laptop' }
-  ];
-  var NAVG = [
-    { n: 'Certification', l: ['Everything DiSC® Certification', 'PXT Select™ Certification', 'The Five Behaviors Of A Cohesive Team™ Facilitator Accreditation'] },
-    { n: 'Services', l: ['Classes / Training Facilitation', 'Executive Coaching'] },
-    { n: 'About', l: ['About Us', 'C. Michael Ferraro', 'Sharon A. Ferraro', 'Speeches & Publications', 'Friends Of TSI'] },
-    { n: 'Support', l: ['FAQ', 'Shipping / Policies', 'Special Payment', 'Contact Info'] }
-  ];
-  var S1 = ['Online And Video Training', 'Workforce Hiring/Retention Tools'], S2 = ['Sollah Interactive, LLC', 'John Wiley & Sons, Inc.'];
-  var WT = 'Thank you for coming to our website!';
-  var WC = 'We are committed to providing high quality customer service to all. We offer virtual and classroom training as well as e-learning sessions, videos and online assessments. Many of our programs have a facilitator’s kit available for those who would like to conduct the training internally. We can help you become knowledgeable and comfortable if you’d like to conduct the facilitation yourself. Check out our site, and please let us know if you have questions or feedback.';
-  var SUBT = 'Buy online courses today, or work with us on certification, coaching and live programs.';
-  var ALT_TEAM = 'Four colleagues talking around a laptop in an office';
-  var ALT0 = 'Diverse team looking at a laptop together';
-
   /* ---------- icons ---------- */
   var IC = ['<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M12 8v4.5M12 15.5v.01"/>', '<circle cx="9" cy="9" r="4.5"/><circle cx="15" cy="9" r="4.5"/><circle cx="12" cy="15" r="4.5"/>', '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>', '<path d="M6 21V4"/><path d="M6 5h11l-2 4 2 4H6"/>', '<rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v4M6 16v-4h12v4"/>', '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a1.5 1.5 0 011.5-1.5h3A1.5 1.5 0 0115 5v2M3 13h18"/>', '<path d="M4 5h11a1 1 0 011 1v7a1 1 0 01-1 1H9l-4 3.5V14H4a1 1 0 01-1-1V6a1 1 0 011-1z"/><path d="M19 9h1a1 1 0 011 1v6a1 1 0 01-1 1h-1v3l-3.5-3H10"/>', '<path d="M12 4v16M7 20h10M5 7h14"/><path d="M5 7l-3 7a3 3 0 006 0zM19 7l-3 7a3 3 0 006 0z"/>', '<circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.5 0 4.5 2 4.5 4.5"/>', '<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>', '<path d="M3 12h7M21 12h-7"/><path d="M7 8l4 4-4 4M17 8l-4 4 4 4"/>', '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>', '<path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0112 7.2 4.3 4.3 0 0119.5 10c0 5.4-7.5 10-7.5 10z"/>', '<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>'];
   var PATH = { r: '<path d="M4 12h16M13 5l7 7-7 7"/>', d: '<path d="M7 17L17 7M8 7h9v9"/>', dn: '<path d="M6 9l6 6 6-6"/>', s: '<circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/>', m: '<path d="M4 7h16M4 12h16M4 17h10"/>', x: '<path d="M6 6l12 12M18 6L6 18"/>', l: '<path d="M20 12H4M11 5l-7 7 7 7"/>', st: '<path d="M12 2.5l2.2 7.3 7.3 2.2-7.3 2.2L12 21.5l-2.2-7.3L2.5 12l7.3-2.2z"/>' };
   function i(k) { return '<svg class="i" viewBox="0 0 24 24" aria-hidden="true">' + PATH[k] + '</svg>'; }
   function ti(n) { return '<svg class="i" viewBox="0 0 24 24" aria-hidden="true">' + IC[n] + '</svg>'; }
   var LM = '<svg class="lm" viewBox="0 0 129 124" fill-rule="evenodd" aria-hidden="true"><path d="M128.906,1l0,122.548l-128.906,0l0,-122.548l128.906,0ZM71.109,68.89l0,-21.189l23.861,0l0,-13.273l-37.134,-0.135l0,47.844l5.36,0l0,0.026l18.521,0l0,18.508l-58.324,0l0,-66.3l-13.368,0l0,79.595l5.428,0l0,0.025l79.525,0l0,-0.071l0.013,0l0,-31.782l-0.012,0l0,-13.248l-23.87,0l0,0ZM118.881,113.965l0,-103.346l-13.32,0l0,0.005l-58.271,0l0,-0.066l-13.32,0l0,0.066l-23.928,0l0.06,13.414l23.868,-0.094l0,66.208l13.32,0l0,-66.208l58.271,0l0,90.021l13.32,0Z"/></svg>';
-
-  /* ---------- the twelve directions ---------- */
-  var ORDER = ['h', 'j', 's', 't']; var NUM = { h: 1, j: 2, s: 3, t: 4 };
-  var D = {
-    h: { n: 'Ledgerhouse', f: ['Host+Grotesk:wght@300;400;500;600;700;800'], ar: 'd', nav: 'line', mm: 'tiles', hero: 'word', top: 'ledger', cr: 'shelf', sv: 'srail', wl: 'pol', page: '#0A1526', tw: 1, split: 1, fw: 1 }
+  var TOPICS_ICON_EXTRA = '<rect x="3" y="4" width="7" height="7" rx="1"/><rect x="14" y="13" width="7" height="7" rx="1"/><path d="M10 7.5h4a2 2 0 012 2V13"/>';
+  var CATS = ['Attitudes/Ethics', 'Coaching/Discipline', 'Conflict Resolution', 'DiSC/Personal Development', 'Diversity', 'Emotional Intelligence (EQ)', 'Harassment', 'Interviewing', 'Leadership', 'Management', 'Sales', 'Team Behaviors', 'Teamwork'];
+  var CAT_IC = { 'Harassment': 0, 'Diversity': 1, 'DiSC/Personal Development': 2, 'Leadership': 3, 'Management': 4, 'Interviewing': 5, 'Coaching/Discipline': 6, 'Attitudes/Ethics': 7, 'Team Behaviors': 8, 'Sales': 9, 'Conflict Resolution': 10, 'Emotional Intelligence (EQ)': 12, 'Teamwork': 14 };
+  var PUBS = {
+    disc: { n: 'Everything DiSC', by: 'John Wiley & Sons, Inc.', logo: 'logo-everything-disc.png', tint: '#E3EDF8' },
+    five: { n: 'The Five Behaviors', by: 'John Wiley & Sons, Inc.', logo: 'logo-five-behaviors.png', tint: '#D5E5F5' },
+    pxt: { n: 'PXT Select', by: 'John Wiley & Sons, Inc.', logo: 'logo-pxt-select.png', tint: '#E9EFF5' },
+    sollah: { n: 'Sollah Interactive', by: 'Sollah Interactive, LLC', logo: 'logo-sollah.png', tint: '#DDE8F2' }
   };
+  var PUB_ORDER = ['disc', 'five', 'pxt', 'sollah'];
+  var FMTS = ['Assessment', 'Certification', 'eCourse', 'Facilitation kit', 'Book', 'Report'];
+  var FIC = {
+    'eCourse': '<rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M10 9.5l4 2.5-4 2.5z"/><path d="M8 20h8"/>',
+    'Assessment': '<path d="M5 20V11M11 20V4M17 20v-6M3 20h18"/>',
+    'Facilitation kit': '<path d="M3 8l9-4 9 4-9 4z"/><path d="M3 8v8l9 4 9-4V8M12 12v8"/>',
+    'Certification': '<circle cx="12" cy="9" r="5.5"/><path d="M8.5 14l-1.5 7 5-2.5 5 2.5-1.5-7"/>',
+    'Book': '<path d="M5 4h10a3 3 0 013 3v13H8a3 3 0 01-3-3z"/><path d="M5 17a3 3 0 013-3h10"/>',
+    'Report': '<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>'
+  };
+  PATH.pl = '<path d="M12 5v14M5 12h14"/>'; PATH.ck = '<path d="M5 12.5l4.5 4.5L19 7.5"/>';
+  PATH.gr = '<rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/>';
+  PATH.ls = '<path d="M4 7h16M4 12h16M4 17h16"/>';
+  PATH.sl = '<path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>';
+  function fi(f) { return '<svg class="i" viewBox="0 0 24 24" aria-hidden="true">' + FIC[f] + '</svg>'; }
+
+  /* Representative titles and prices from the live catalogue. Swap this array for the real feed. */
+  var ROWS = [
+    ['D08', 'The Five Behaviors® Team & Personal Downloadable Kits', 'five', 'Team Behaviors', 'Facilitation kit', 1495, 1345, 'cover-d08.jpg'],
+    ['FB1', 'The Five Behaviors™ Assessment', 'five', 'Team Behaviors', 'Assessment', 210, 210, 'cover-fb1.jpg'],
+    ['', 'The Five Behaviors™ Personal Development Assessment', 'five', 'Team Behaviors', 'Assessment', 150, 150],
+    ['', 'The Five Behaviors™ Certification (delivered online)', 'five', 'Team Behaviors', 'Certification', 2495, 2495],
+    ['CER3', 'The Everything DiSC® Certification & Catalyst Practitioner Experience', 'disc', 'DiSC/Personal Development', 'Certification', 4695, 3995, 'cover-cer3.jpg'],
+    ['B107', 'Everything DiSC® Workplace on Catalyst', 'disc', 'DiSC/Personal Development', 'Assessment', 90, 90, 'cover-b107.jpg'],
+    ['', 'Everything DiSC® Certification (delivered online)', 'disc', 'DiSC/Personal Development', 'Certification', 2495, 2495],
+    ['', 'Everything DiSC® on Catalyst™ Practitioner Experience', 'disc', 'DiSC/Personal Development', 'Certification', 2200, 2200],
+    ['', 'Everything DiSC® Workplace Profile', 'disc', 'DiSC/Personal Development', 'Assessment', 90, 90],
+    ['', 'Everything DiSC Workplace® Downloadable Facilitation Kit', 'disc', 'DiSC/Personal Development', 'Facilitation kit', 1495, 1345],
+    ['', 'DiSC® Classic 2.0', 'disc', 'DiSC/Personal Development', 'Assessment', 90, 90],
+    ['', 'DiSC® Classic (paper version)', 'disc', 'DiSC/Personal Development', 'Assessment', 35, 35],
+    ['', 'QuickDiSC®', 'disc', 'DiSC/Personal Development', 'Assessment', 76, 68.4],
+    ['B101', 'Everything DiSC® Sales Profile', 'disc', 'Sales', 'Assessment', 150, 150, 'cover-b101.jpg'],
+    ['B104', 'Everything DiSC® Work of Leaders™ Profile', 'disc', 'Leadership', 'Assessment', 150, 150, 'cover-b104.jpg'],
+    ['', 'Everything DiSC Work of Leaders® Downloadable Facilitation Kit', 'disc', 'Leadership', 'Facilitation kit', 1495, 1345],
+    ['', 'Everything DiSC® Management Profile', 'disc', 'Management', 'Assessment', 150, 150],
+    ['', 'Everything DiSC® Agile EQ™ Profile', 'disc', 'Emotional Intelligence (EQ)', 'Assessment', 150, 150],
+    ['', 'Everything DiSC® Productive Conflict Profile', 'disc', 'Conflict Resolution', 'Assessment', 120, 120],
+    ['', 'Everything DiSC® Productive Conflict Downloadable Facilitation Kit', 'disc', 'Conflict Resolution', 'Facilitation kit', 1495, 1345.5],
+    ['PI04', 'PXT Select™', 'pxt', 'Interviewing', 'Assessment', 295, 295, 'cover-pi04.jpg'],
+    ['PI01', 'CheckPoint 360 Feedback', 'pxt', 'Management', 'Assessment', 400, 400, 'cover-pi01.jpg'],
+    ['', 'PXT Select™ Leadership Report', 'pxt', 'Leadership', 'Report', 295, 295],
+    ['', 'PXT Select™ Expert Practitioner Training & Certification (FREE course)', 'pxt', 'Interviewing', 'Certification', 599, 599],
+    ['', 'Step One Survey®', 'pxt', 'Interviewing', 'Assessment', 30, 30],
+    ['VP065', 'A.C.T.with Integrity™', 'sollah', 'Attitudes/Ethics', 'eCourse', 30, 30, 'cover-vp065.jpg'],
+    ['VP078', 'Diversity 101™', 'sollah', 'Diversity', 'eCourse', 30, 30, 'cover-vp078.jpg'],
+    ['VP069', 'Courage to Coach™', 'sollah', 'Coaching/Discipline', 'eCourse', 30, 30, 'cover-vp069.jpg'],
+    ['VP064', 'Leadership 101', 'sollah', 'Leadership', 'eCourse', 50, 50, 'cover-vp064.jpg'],
+    ['', 'Coaching and Feedback Essentials', 'sollah', 'Coaching/Discipline', 'eCourse', 50, 50],
+    ['', 'Documenting Discipline', 'sollah', 'Coaching/Discipline', 'Book', 21.95, 21.95],
+    ['', 'Drawing the Line™: Preventing Harassment in the Workplace (CA Manager)', 'sollah', 'Harassment', 'eCourse', 99, 99],
+    ['', 'Workplace Violence Legal Role in Keeping Your Workplace Safe', 'sollah', 'Harassment', 'eCourse', 30, 30],
+    ['', 'Interviewing: More Than a Gut Feeling', 'sollah', 'Interviewing', 'Book', 21.95, 21.95],
+    ['', 'Creating a High Performing Team: An Advantage eLearning Course', 'sollah', 'Teamwork', 'eCourse', 50, 50],
+    ['', 'A Team Defined (Interactive Tool): Understanding the Power of Teams', 'sollah', 'Teamwork', 'eCourse', 30, 30],
+    ['', 'Managing Generation Y: Leading Our Future™', 'sollah', 'Management', 'eCourse', 50, 50],
+    ['', 'I Wish My Manager Would Just...', 'sollah', 'Management', 'eCourse', 30, 30],
+    ['', 'Taking the Step Up to Supervisor', 'sollah', 'Management', 'Book', 21.95, 21.95]
+  ];
+  var P = ROWS.map(function (r, n) { return { id: n, code: r[0], t: r[1], pub: r[2], cat: r[3], fmt: r[4], reg: r[5], price: r[6], img: r[7] || '', hay: (r[1] + ' ' + r[3] + ' ' + PUBS[r[2]].n + ' ' + r[4] + ' ' + r[0]).toLowerCase() }; });
+  var CAT_N = {}; P.forEach(function (p) { CAT_N[p.cat] = (CAT_N[p.cat] || 0) + 1; });
+  var TOPICS = CATS.slice().sort(function (a, b) { return CAT_N[b] - CAT_N[a]; }).map(function (c) { return [c, CAT_N[c], CAT_IC[c]]; });
+  var S1 = ['Online And Video Training', 'Workforce Hiring/Retention Tools'], S2 = ['Sollah Interactive, LLC', 'John Wiley & Sons, Inc.'];
+  var NAVG = [
+    { n: 'Certification', l: ['Everything DiSC® Certification', 'PXT Select™ Certification', 'The Five Behaviors Of A Cohesive Team™ Facilitator Accreditation'] },
+    { n: 'Services', l: ['Classes / Training Facilitation', 'Executive Coaching'] },
+    { n: 'About', l: ['About Us', 'C. Michael Ferraro', 'Sharon A. Ferraro', 'Speeches & Publications', 'Friends Of TSI'] },
+    { n: 'Support', l: ['FAQ', 'Shipping / Policies', 'Special Payment', 'Contact Info'] }
+  ];
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var d, key, AR;
@@ -2029,7 +2230,6 @@ header.hd > .hpart { margin-top: 0; }
   function logo() { return '<a class="logo" href="#top">' + LM + '<span>Training Solutions</span></a>'; }
   function fig(f, cls, alt, top, ex) { return '<figure class="ph ' + cls + (top ? ' top' : '') + '"' + (ex || '') + '>' + img(f, alt || '') + '</figure>'; }
 
-  /* ---------- header + navigation ---------- */
   function bar() {
     var cats = TOPICS.map(function (t, k) { return '<a class="mm-c" href="#courses" data-k="' + k + '" style="--n:' + t[1] + ';--i:' + k + '"><span class="ti">' + ti(k) + '</span><span class="mm-n">' + esc(t[0]) + '</span><span class="mm-bar"></span><span class="mm-k">' + t[1] + '</span></a>'; }).join('');
     function box(a) { return a.map(function (x) { return '<a class="mm-box" href="#">' + esc(x) + i('r') + '</a>'; }).join(''); }
@@ -2044,109 +2244,6 @@ header.hd > .hpart { margin-top: 0; }
     return h + '<a class="dr-login" href="#">Log in</a></div>';
   }
 
-  /* ---------- hero ---------- */
-  function h1() {
-    if (!d.split) return '<h1>Training that builds <em>better teams</em>.</h1>';
-    var W = [['Training'], ['that'], ['builds'], ['better', 1], ['teams', 1]];
-    return '<h1 class="split">' + W.map(function (w, k) { var t = w[1] ? '<em>' + w[0] + '</em>' : w[0]; if (k === 4) t += '.'; return '<span class="w"><span class="wi" style="--k:' + k + '">' + t + '</span></span>'; }).join(' ') + '</h1>';
-  }
-  function search() { return '<form class="hs fade-up" style="--dl:.55s" role="search"><label class="hs-f">' + i('s') + '<input id="hero-q" type="search" placeholder="Search courses, categories or keywords" aria-label="Search courses, categories or keywords"><button class="btn hs-b" type="submit">Search</button></label><div class="hs-pop"><span>Popular:</span><a href="#courses">Harassment</a><a href="#courses">Diversity</a><a href="#courses">Leadership</a><a href="#courses">Everything DiSC</a></div></form>'; }
-  function copy() { if (key === 't') return '<div class="hero-copy">' + h1() + '<p class="sub fade-up" style="--dl:.4s">' + SUBT + '</p>' + search() + '</div>'; return '<div class="hero-copy"><p class="est9 fade-up" style="--dl:.05s"><span class="d" aria-hidden="true"></span>Educating, inspiring and serving <b>since 1995</b></p>' + h1() + '<p class="sub fade-up" style="--dl:.4s">' + SUBT + '</p>' + search() + '</div>'; }
-  function badge() { return '<div class="badge" aria-hidden="true"><svg viewBox="0 0 124 124"><defs><path id="ring-' + key + '" d="M62 62 m-47 0 a47 47 0 1 1 94 0 a47 47 0 1 1 -94 0"/></defs><circle cx="62" cy="62" r="62"/><text><textPath href="#ring-' + key + '" textLength="292" lengthAdjust="spacing">EDUCATING, INSPIRING AND SERVING SINCE 1995 ·</textPath></text></svg><span class="core">1995</span></div>'; }
-  function letters(s) { return s.split('').map(function (ch, k) { return ch === ' ' ? '<span class="wsp"> </span>' : '<span style="--k:' + k + '">' + ch + '</span>'; }).join(''); }
-  var MQ = TOPICS.map(function (t) { return '<span>' + esc(t[0]) + '</span>' + i('st'); }).join('');
-  var HERO = {
-    strip: function () { return '<div class="wrap hero-in">' + copy() + '</div><div class="wrap strip">' + fig('meetings.jpg', 'st1', '', 0, ' data-par=".06"') + fig('diversity.jpg', 'st2', ALT0, 0, ' data-par=".02"') + fig('coaching.jpg', 'st3', '', 1, ' data-par=".1"') + badge() + '</div>'; },
-    poster: function () { return '<div class="wrap hero-in">' + copy() + '<div class="art">' + fig('diversity.jpg', 's1', ALT0) + fig('meetings.jpg', 's2') + fig('coaching.jpg', 's3', '', 1) + '<span class="star">' + i('st') + '</span>' + badge() + '</div></div><div class="mq" aria-hidden="true"><div class="mq-t">' + MQ + MQ + '</div></div>'; },
-    frames: function () { return '<div class="wrap hero-in">' + copy() + '<div class="art"><canvas class="px" aria-hidden="true"></canvas>' + fig('diversity.jpg', 'fa', ALT0) + fig('meetings.jpg', 'fb') + fig('coaching.jpg', 'fc', '', 1) + '</div></div>'; },
-    word: function () { return '<div class="hbg">' + img('hero-h2.webp', '') + '</div><div class="wrap hero-in">' + copy() + '</div>' + '<div class="wrap hpart fade-up" style="--dl:.8s"><div class="hglass"><p class="plab">Authorized partners</p><ul class="logos" aria-label="Partners"><li>' + img('logo-everything-disc-w.png', 'Everything DiSC, a Wiley brand') + '</li><li>' + img('logo-pxt-select-w.png', 'PXT Select, a Wiley brand') + '</li><li>' + img('logo-five-behaviors-w.png', 'The Five Behaviors, a Wiley brand') + '</li><li>' + img('logo-sollah-w.png', 'Sollah Interactive, LLC') + '</li></ul></div></div>'; },
-    device: function () { return '<div class="wrap hero-in">' + copy() + '<div class="art"><span class="devbg"></span><div class="dev">' + img('hero-team.jpg', 'Four colleagues talking around a laptop in an office') + '</div><a class="chip" href="#courses"><span class="ti">' + ti(13) + '</span><span><b>Legal</b><small>2 products</small></span></a><a class="chip c2" href="#courses"><span class="ti">' + ti(1) + '</span><span><b>Diversity</b><small>12 products</small></span></a><a class="chip c3" href="#courses"><span class="ti">' + ti(3) + '</span><span><b>Leadership</b><small>12 products</small></span></a></div></div>' + '<div class="wrap hpart fade-up" style="--dl:.8s"><p class="plab">Authorized partners</p><ul class="logos" aria-label="Partners"><li>' + img('logo-everything-disc.png', 'Everything DiSC, a Wiley brand') + '</li><li>' + img('logo-pxt-select.png', 'PXT Select, a Wiley brand') + '</li><li>' + img('logo-five-behaviors.png', 'The Five Behaviors, a Wiley brand') + '</li><li>' + img('logo-sollah.png', 'Sollah Interactive, LLC') + '</li></ul></div>'; },
-    collage: function () { return '<div class="wrap hero-in">' + copy() + '<div class="art"><span class="blk"></span>' + fig('diversity.jpg', 'p1', ALT0) + fig('meetings.jpg', 'p2') + fig('coaching.jpg', 'p3', '', 1) + badge() + '</div></div>'; },
-    bleed: function () { return '<div class="hbg">' + img('teams.jpg', '') + '</div><div class="wrap hero-in">' + copy() + '</div>'; },
-    arches: function () { return '<div class="wrap hero-in">' + copy() + '</div><div class="wrap arches">' + fig('meetings.jpg', 'a1') + fig('diversity.jpg', 'a2', ALT0) + fig('coaching.jpg', 'a3', '', 1) + '</div>'; },
-    circles: function () { return '<div class="wrap hero-in">' + copy() + '<div class="art"><span class="disc"></span>' + fig('ts-checklist.jpg', 'drop') + '<span class="ring"></span>' + fig('hero-team.jpg', 'c1', ALT_TEAM) + fig('ts-desk.jpg', 'c2') + fig('ts-laptop.jpg', 'c3') + '</div></div>'; },
-    sky: function () { function ch(k, n, c) { return '<a class="fchip ' + c + '" href="#courses"><span class="ti">' + ti(k) + '</span><span><b>' + TOPICS[n][0] + '</b><small>' + TOPICS[n][1] + ' products</small></span></a>'; } return '<div class="wrap hero-in">' + copy() + '<div class="art fart"><svg class="fhills" viewBox="0 0 800 960" preserveAspectRatio="none" aria-hidden="true"><g transform="scale(1 1.3714)"><path class="h1" d="M800 60V700H90C320 620 460 500 410 380C370 290 240 250 262 140C278 70 380 70 470 60Z"/><path class="h2" d="M800 210V700H300C470 610 560 500 520 400C490 320 400 290 410 220C418 170 490 180 560 210Z"/><path class="h3" d="M800 400V700H520C620 640 680 560 660 500C645 455 700 410 800 400Z"/></g></svg><figure class="fphoto">' + img('hero-team.jpg', ALT_TEAM) + '</figure>' + ch(0, 0, 'f1') + ch(1, 1, 'f2') + ch(3, 3, 'f3') + '</div></div>'; },
-    mosaic: function () { return '<div class="wrap hero-in">' + copy() + '<div class="art">' + fig('diversity.jpg', 'q1', ALT0) + fig('meetings.jpg', 'q2') + fig('coaching.jpg', 'q3', '', 1) + fig('teams.jpg', 'q4') + badge() + '</div></div>'; },
-    radar: function () { return '<div class="wrap hero-in">' + copy() + '</div><div class="wrap"><div class="scope"><span class="rings"></span><span class="sweep"></span>' + fig('meetings.jpg', 'r2') + fig('diversity.jpg', 'r1', ALT0) + fig('coaching.jpg', 'r3', '', 1) + '</div></div>'; }
-  };
-
-  /* ---------- sections ---------- */
-  function trust() {
-    var s = d.tw ? '-w' : '';
-    return '<section class="sx trust"><div class="wrap tr-in"><p class="since">Educating, inspiring and serving since 1995</p><div class="tr-r"><p class="plab">Authorized partners</p><ul class="logos" aria-label="Partners"><li>' + img('logo-everything-disc' + s + '.png', 'Everything DiSC, a Wiley brand') + '</li><li>' + img('logo-pxt-select' + s + '.png', 'PXT Select, a Wiley brand') + '</li><li>' + img('logo-five-behaviors' + s + '.png', 'The Five Behaviors, a Wiley brand') + '</li><li>' + img('logo-sollah' + s + '.png', 'Sollah Interactive, LLC') + '</li></ul></div></div></section>';
-  }
-  function topics() {
-    var items = TOPICS.map(function (t, k) { return '<a class="t" href="#courses" style="--n:' + t[1] + ';--i:' + k + '"><span class="ti">' + ti(k) + '</span><span class="tn">' + esc(t[0]) + '</span><span class="tc"><b>' + t[1] + '</b> products</span><span class="ta">' + AR + '</span></a>'; }).join('');
-    items += '<a class="t more" href="#topics"><span class="tn">See all categories</span><span class="ta">' + AR + '</span></a>';
-    return '<section class="sx topics v-' + d.top + '" id="topics"><div class="wrap"><div class="sh"><div><h2>Browse by <em>category</em></h2></div><a class="more-l tsh-more" href="#topics">See all categories <span class="ic">' + AR + '</span></a></div><div class="tl">' + items + '</div></div></section>';
-  }
-  function catalyst(white) {
-    return '<div class="cat"><div class="cat-m"><span class="cat-t">Meet <i>Catalyst.</i></span><span class="cat-s">The <b>NEW</b> way to experience</span></div>' + img(white ? 'logo-everything-disc-w.png' : 'logo-everything-disc.png', 'Everything DiSC, a Wiley brand', 'class="cat-l" loading="lazy"') + '<a class="cat-a" href="#">Learn More About Catalyst Here' + i('r') + '</a><p class="cat-c">© by John Wiley &amp; Sons, Inc. All rights reserved.</p></div>';
-  }
-  function welcome() {
-    var ph = '<figure class="ph wpf">' + img('founders.webp', 'Sharon and Michael Ferraro', 'loading="lazy"') + '</figure>';
-    var tx = '<h2 class="wh">' + WT + '</h2><p class="wc">' + WC + '</p><p class="wsig">' + 'Sharon and Michael Ferraro.' + '</p>';
-    if (d.wl === 'pol') return '<section class="sx welcome wl-pol" id="welcome"><div class="wrap pg"><figure class="pol"><div class="ph">' + img('founders.webp', 'Sharon and Michael Ferraro', 'loading="lazy"') + '</div><figcaption>Sharon and Michael</figcaption></figure><div class="pt"><h2 class="wh">' + WT + '</h2><blockquote class="wq"><p class="wlead">We are committed to providing high quality customer service to all.</p><p>We offer virtual and classroom training as well as e-learning sessions, videos and online assessments. Many of our programs have a facilitator’s kit available for those who would like to conduct the training internally.</p><p>We can help you become knowledgeable and comfortable if you’d like to conduct the facilitation yourself. Check out our site, and please let us know if you have questions or feedback.</p><footer class="wsig">Sharon and Michael Ferraro.</footer></blockquote></div><div class="stamp"><div class="st-l"><span class="cat-t">Meet Catalyst.</span><span class="cat-s">The <b>NEW</b> way to experience</span></div><span class="st-logo">' + img('logo-everything-disc.png', 'Everything DiSC, a Wiley brand', 'class="cat-l" loading="lazy"') + '</span><p class="cat-c">© by John Wiley &amp; Sons, Inc. All rights reserved.</p><a class="st-btn" href="#" aria-label="Learn more about Catalyst">Learn more' + i('r') + '</a></div></div></section>';
-    if (d.wl === 'split') return '<section class="sx welcome wl-split" id="welcome"><div class="wrap wg"><div class="wph">' + ph + '</div><div class="wt">' + tx + catalyst(d.wdk) + '</div></div></section>';
-    if (d.wl === 'card') return '<section class="sx welcome wl-card" id="welcome"><div class="wrap"><div class="wtop">' + ph + '<div class="wt">' + tx + '</div></div><div class="wrib">' + catalyst(1) + '</div></div></section>';
-    return '<section class="sx welcome wl-letter" id="welcome"><div class="wrap wg"><div class="wt">' + ph + tx + '</div><aside class="promo">' + img('catalyst-promo.png', 'Meet Catalyst. The NEW way to experience Everything DiSC, a Wiley brand', 'loading="lazy"') + '<a class="cat-a" href="#">Learn More About Catalyst Here' + i('r') + '</a><p class="cat-c">© by John Wiley &amp; Sons, Inc. All rights reserved.</p></aside></div></section>';
-  }
-  function card(c, k) { return '<a class="c" href="#" style="--i:' + k + '"><div class="cv"><span class="cc">' + c.code + '</span><span class="bk">' + img(c.img, c.alt, 'loading="lazy"') + '</span></div><div class="cb"><span class="ct">' + esc(c.topic) + '</span><h3>' + esc(c.title) + '</h3><div class="cf"><span class="price">' + pr(c) + '</span><span class="go"><span>View course</span>' + AR + '</span></div></div></a>'; }
-  function chead(rail) { return '<div class="sh"><div><h2>Featured <em>products</em></h2><p>Self-paced and ready to assign. Individual courses are $30 to $99.</p></div><div class="sh-r">' + (rail ? '<div class="rn"><button type="button" data-dir="-1" aria-label="Previous courses">' + i('l') + '</button><button type="button" data-dir="1" aria-label="Next courses">' + i('r') + '</button></div>' : '') + '<a class="more-l" href="#">See all online courses <span class="ic">' + AR + '</span></a></div></div>'; }
-  function courses() {
-    var v = d.cr, body;
-    if (v === 'grid') body = '<div class="cg">' + COURSES.map(card).join('') + '</div>';
-    else if (v === 'rail') body = '<div class="rail" tabindex="0" aria-label="Popular online courses">' + COURSES.map(card).join('') + '</div><div class="rail-pg" aria-hidden="true"><span></span></div>';
-    else if (v === 'shelf') {
-      body = '<div class="shelf">';
-      for (var s = 0; s < COURSES.length; s += 4) body += '<div class="sf">' + COURSES.slice(s, s + 4).map(function (c, k) { return '<a class="c" href="#" style="--i:' + k + '"><div class="cv"><span class="bk">' + img(c.img, c.alt, 'loading="lazy"') + '</span></div><div class="tag"><span class="cc">' + c.code + '</span><span class="price">' + pr(c) + '</span></div><div class="cb"><span class="ct">' + esc(c.topic) + '</span><h3>' + esc(c.title) + '</h3></div></a>'; }).join('') + '</div>';
-      body += '</div>';
-    } else if (v === 'row') body = '<div class="crow">' + COURSES.map(function (c, k) { return '<a class="c" href="#" style="--i:' + k + '"><div class="cv"><span class="bk">' + img(c.img, c.alt, 'loading="lazy"') + '</span></div><div class="cb"><div class="cm"><span class="cc">' + c.code + '</span><span class="ct">' + esc(c.topic) + '</span></div><h3>' + esc(c.title) + '</h3><div class="cf"><span class="price">' + pr(c) + '</span><span class="go"><span>View course</span>' + AR + '</span></div></div></a>'; }).join('') + '</div>';
-    else body = '<div class="clist"><div class="lst">' + COURSES.map(function (c, k) { return '<a class="r' + (k === 0 ? ' on' : '') + '" href="#" data-i="' + k + '"><span class="th">' + img(c.img, '', 'loading="lazy"') + '</span><span class="rc">' + c.code + '</span><span class="rt">' + esc(c.title) + '<span class="rk">' + esc(c.topic) + '</span></span><span class="price">' + pr(c) + '</span><span class="ra">' + AR + '</span></a>'; }).join('') + '</div><aside class="pv" aria-live="polite"></aside></div>';
-    return '<section class="sx courses v-' + v + '" id="courses"><div class="wrap">' + chead(v === 'rail') + body + '</div></section>';
-  }
-  function svcHead() { return '<div class="sh"><div><h2>Services that deliver <em>results</em></h2><p>Our motivational style will energize your employees and help them learn more about themselves and their teammates.</p></div></div>'; }
-  function sp(s) { return s.p ? '<span class="sp">' + s.p + '</span>' : ''; }
-  var SVC_SUB = 'Our motivational style will energize your employees and help them learn more about themselves and their teammates.';
-  var SVC_FMT = ['Live', 'Online', 'One-to-one', 'Certification', 'Certification', 'Online'];
-  function hscroll() {
-    var n = SERVICES.length;
-    var cards = SERVICES.map(function (s) { return '<article class="hc">' + fig(s.img, 'hci', s.alt) + '<div class="hcb"><div class="hct"><h3>' + esc(s.t) + '</h3></div><p>' + esc(s.d) + '</p></div></article>'; }).join('');
-    var dots = SERVICES.map(function (s, k) { return '<button type="button" class="hd-dot" data-i="' + k + '" aria-label="Go to ' + esc(s.t) + '"' + (k === 0 ? ' aria-current="true"' : '') + '></button>'; }).join('');
-    return '<section class="sx svc v-hscroll" id="services"><div class="hs-run"><div class="hs-stick"><div class="wrap hs-in"><div class="hs-l"><div><h2>Services that deliver <em>results</em></h2><p class="hs-sub">' + SVC_SUB + '</p></div><div class="hs-meta"><div class="hs-n" aria-live="polite"><b id="hsn">01</b><span>/ 0' + n + '</span></div><p class="hs-t" id="hst">' + esc(SERVICES[0].t) + '</p><div class="hs-dots">' + dots + '</div></div></div><div class="hs-view" tabindex="0" aria-label="Services, scroll to move through them"><div class="hs-track">' + cards + '</div></div></div></div></div></section>';
-  }
-  function fanCards() {
-    return '<div class="svf-grid">' + SERVICES.map(function (s, k) { return '<a class="svf-card" href="#" style="--t:' + [-4, 0, 4][k % 3] + 'deg;--dy:' + [0, 36, 0][k % 3] + 'px">' + fig(s.img, 'svf-img', s.alt) + '<div class="svf-body"><h3>' + esc(s.t) + '</h3><p>' + esc(s.d) + '</p></div><span class="svf-arrow">' + AR + '</span></a>'; }).join('') + '</div>';
-  }
-  function mediaCards() {
-    var chips = ['All', 'Live', 'Online', 'One-to-one', 'Certification'];
-    var bar = '<div class="svm-bar"><label class="svm-q">' + i('s') + '<input id="svq" type="search" placeholder="Search services" aria-label="Search services" autocomplete="off"></label><div class="mchips" role="group" aria-label="Filter by format">' + chips.map(function (c, k) { return '<button type="button" data-f="' + c + '" aria-pressed="' + (k === 0) + '">' + c + '</button>'; }).join('') + '</div></div>';
-    return bar + '<div class="svm-grid" id="mg">' + SERVICES.map(function (s, k) { return '<a class="svm-card" href="#" data-f="' + SVC_FMT[k] + '" data-q="' + esc((s.t + ' ' + s.d + ' ' + SVC_FMT[k]).toLowerCase()) + '"><div class="svm-media">' + img(s.img, s.alt) + '<span class="mchip">' + SVC_FMT[k] + (s.p ? ' · From ' + s.p : '') + '</span></div><h3>' + esc(s.t) + '</h3><p>' + esc(s.d) + '</p></a>'; }).join('') + '</div><p class="mnone" id="mnone" hidden>No service matches that search.</p>';
-  }
-  function services() {
-    var v = d.sv, b;
-    if (v === 'hscroll') return hscroll();
-    if (v === 'srail') b = '<div class="srl" tabindex="0" aria-label="Services">' + SERVICES.map(function (s) { return '<a class="svr" href="#">' + fig(s.img, 'sri', s.alt) + '<div class="srb">' + sp(s) + '<h3>' + esc(s.t) + '</h3><p>' + esc(s.d) + '</p><span class="sra">' + AR + '</span></div></a>'; }).join('') + '</div>';
-    else if (v === 'accordion') b = '<div class="acc">' + SERVICES.map(function (s, k) { return '<a class="ap' + (k === 0 ? ' on' : '') + '" href="#" data-i="' + k + '">' + fig(s.img, 'api', s.alt) + '<span class="apl">' + esc(s.t) + '</span><div class="apb"><h3>' + esc(s.t) + '</h3><p>' + esc(s.d) + '</p>' + sp(s) + '</div></a>'; }).join('') + '</div>';
-    else if (v === 'stack') b = '<div class="stk">' + SERVICES.map(function (s, k) { return '<a class="sc" href="#" style="--i:' + k + '"><div class="scb"><h3>' + esc(s.t) + '</h3><p>' + esc(s.d) + '</p><div class="scf">' + sp(s) + '<span class="go"><span>Learn more</span>' + AR + '</span></div></div>' + fig(s.img, 'sci', s.alt) + '</a>'; }).join('') + '</div>';
-    else if (v === 'reveal') b = '<div class="rvl">' + SERVICES.map(function (s, k) { return '<a class="rr" href="#" data-i="' + k + '"><h3>' + esc(s.t) + '</h3><p>' + esc(s.d) + sp(s) + '</p><span class="ta">' + AR + '</span></a>'; }).join('') + '<div class="flt" aria-hidden="true">' + SERVICES.map(function (s) { return img(s.img, ''); }).join('') + '</div></div>';
-    else if (v === 'tabs') b = '<div class="tabs"><div class="tb-l" role="tablist" aria-label="Services">' + SERVICES.map(function (s, k) { return '<button type="button" role="tab" id="tab-' + k + '" aria-controls="tp-' + k + '" aria-selected="' + (k === 0) + '" tabindex="' + (k === 0 ? 0 : -1) + '"><span class="ti">' + ti([4, 5, 11, 2, 8, 9][k]) + '</span><span>' + esc(s.t) + '</span>' + (s.p ? '<em>' + s.p + '</em>' : '') + '</button>'; }).join('') + '</div><div class="tb-p">' + SERVICES.map(function (s, k) { return '<div class="tp" role="tabpanel" id="tp-' + k + '" aria-labelledby="tab-' + k + '"' + (k ? ' hidden' : '') + '>' + fig(s.img, 'tpi', s.alt) + '<div class="tpb"><div><h3>' + esc(s.t) + '</h3><p>' + esc(s.d) + '</p></div><div class="tpf">' + sp(s) + '<a class="btn" href="#">Learn more' + i('r') + '</a></div></div></div>'; }).join('') + '</div></div>';
-    else if (v === 'rows') b = '<div class="srows"><div class="lst">' + SERVICES.map(function (s, k) { return '<div class="s' + (k === 0 ? ' on' : '') + '" tabindex="0" role="button" aria-expanded="' + (k === 0) + '" data-i="' + k + '"><h3>' + esc(s.t) + '<span class="ta">' + AR + '</span></h3><div class="sd"><div><p>' + esc(s.d) + '</p>' + sp(s) + '</div></div></div>'; }).join('') + '</div><div class="viz" aria-hidden="true">' + SERVICES.map(function (s, k) { return img(s.img, '', k === 0 ? 'class="on"' : ''); }).join('') + '</div></div>';
-    else if (v === 'fan') b = fanCards();
-    else if (v === 'media') b = mediaCards();
-    else b = '<div class="sg' + (v === 'bento' ? ' bento' : '') + '">' + SERVICES.map(function (s, k) { return '<a class="s" href="#" style="--i:' + k + '">' + fig(s.img, 'si', s.alt) + '<div class="sb"><h3>' + esc(s.t) + '</h3><p>' + esc(s.d) + '</p></div>' + sp(s) + '<span class="sa">' + AR + '</span></a>'; }).join('') + '</div>';
-    return '<section class="sx svc v-' + v + '" id="services"><div class="wrap">' + svcHead() + b + '</div></section>';
-  }
-  function proof() {
-    var stats = '<div class="stats"><div class="stat"><b>1995</b><span>Serving HR and training teams since</span></div><div class="stat"><b data-n="122">122</b><span>Courses, assessments, kits and books in the catalog</span></div><div class="stat"><b data-n="30" data-p="$">$30</b><span>Starting price for an online course</span></div></div>';
-    var quote = '<figure class="quote"><div class="qp ph top">' + img('portrait.jpg', 'Portrait of a smiling HR professional (sample photo, replace with the customer)', 'loading="lazy"') + '</div><blockquote><p>&ldquo;Assigning the course takes minutes, and I can see who has finished and their scores without chasing anyone. At $30 a person, it was an easy decision.&rdquo;</p><figcaption><span class="qn">Director of Human Resources</span><span class="qc">, </span><span class="qr">regional healthcare provider</span> <em>Sample quote</em></figcaption></blockquote></figure>';
-    var learn = '<div class="learn"><p class="ld">Learn with us</p><div class="lc"><span class="li"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span><div><h4>Upcoming class dates</h4><p>Everything DiSC Certification<span>Jan 14–15, 2027 · Virtual</span></p></div></div><div class="lc"><span class="li"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12.5" rx="2"/><path d="M10 8.5l4.5 2.25L10 13zM8 20.5h8"/></svg></span><div><h4>Resources</h4><p>Webinar: Coaching with DiSC<span>Dec 9, 2026 · 45 min</span></p></div></div><div class="lc"><span class="li"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9.5" r="5.5"/><path d="M8.7 14l-1.7 6.5L12 18l5 2.5-1.7-6.5"/></svg></span><div><h4>Publishers we work with</h4><p>Wiley and Sollah<span>Authorized partner since 1995</span></p></div></div></div>';
-    return '<section class="sx proof" id="about"><div class="wrap"><div class="pf">' + stats + quote + '</div>' + learn + '</div></section>';
-  }
-  function cta() {
-    var n = '703-318-0838';
-    return '<section class="sx cta" id="cta"><div class="wrap"><div class="cta-in"><span class="kick">Not sure where to start?</span><h2>Tell us the people <em>challenge.</em></h2><a class="phone" href="tel:7033180838" aria-label="Call 703-318-0838">' + n.split('').map(function (ch, k) { return '<span style="--k:' + k + '">' + ch + '</span>'; }).join('') + '</a><div class="cta-row"><span>We will point you to the right course or program. Call or send a note.</span><span>Chantilly, Virginia</span></div></div></div></section>';
-  }
   function footer() {
     return '<footer class="sx foot"><div class="wrap"><div class="fgrid"><div class="fb">' + logo() + '<p>Chantilly, Virginia. Training, coaching and consulting since 1995.</p></div><div><h4>Company</h4><ul><li><a href="#">About us</a></li><li><a href="#">Our story</a></li><li><a href="#">Contact</a></li></ul></div><div><h4>Products</h4><ul><li><a href="#">Online courses</a></li><li><a href="#">Kits and books</a></li></ul></div><div><h4>Services</h4><ul><li><a href="#">Classes</a></li><li><a href="#">Executive coaching</a></li><li><a href="#">TAG</a></li></ul></div><div><h4>Customer service</h4><ul><li><a href="#">Order help</a></li><li><a href="#">Returns</a></li><li>703-318-0838</li></ul></div></div><div class="legal"><span>© Training Solutions, Inc.</span><span>Authorized partner of Wiley and Sollah</span></div>' + (d.fw ? '<div class="fword" aria-hidden="true">Training Solutions</div>' : '') + '</div></footer>';
   }
@@ -2155,72 +2252,139 @@ header.hd > .hpart { margin-top: 0; }
   var loaded = {};
   function fonts(list) { list.forEach(function (q) { if (loaded[q]) return; loaded[q] = 1; var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = 'https://fonts.googleapis.com/css2?family=' + q + '&display=swap'; document.head.appendChild(l); }); }
 
-  /* ---------- render + behaviour ---------- */
-  var app = document.getElementById('app'), cleanup = [];
-  function on(el, ev, fn, o) { el.addEventListener(ev, fn, o); cleanup.push(function () { el.removeEventListener(ev, fn, o); }); }
-  function render(k) {
-    cleanup.forEach(function (f) { f(); }); cleanup = [];
-    key = k; d = D[k]; AR = i(d.ar);
-    fonts(d.f);
-    app.setAttribute('data-d', k); app.className = 'ar-' + d.ar;
-    document.body.style.setProperty('--page', d.page);
-    app.innerHTML = '<header class="hd hero-' + d.hero + '" id="top">' + bar() + HERO[d.hero]() + '</header><main>' + trust() + topics() + courses() + services() + welcome() + proof() + cta() + '</main>' + footer() + drawer();
-    wire();
-    window.scrollTo(0, 0);
-  }
-  function go(id) { var t = document.getElementById(id); if (t) t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }
+  IC.push(TOPICS_ICON_EXTRA);
+  function ti(n) { var t = TOPICS[n]; return '<svg class="i" viewBox="0 0 24 24" aria-hidden="true">' + IC[t ? t[2] : n] + '</svg>'; }
+  function logo() { return '<a class="logo" href="index.html">' + LM + '<span>Training Solutions</span></a>'; }
+  var D = { h: { n: 'Ledgerhouse', f: ['Host+Grotesk:wght@300;400;500;600;700;800'], ar: 'd', nav: 'line', mm: 'tiles', hero: 'word', page: '#0A1526', fw: 1 } };
 
-  function svcMotion() {
-    function $q(sel) { return app.querySelector(sel); }
-    /* horizontal track driven by vertical scroll */
-    var run = $q('.hs-run');
-    if (run) {
-      var pinTop = 0, stick = $q('.hs-stick'), view = $q('.hs-view'), track = $q('.hs-track'), dots = app.querySelectorAll('.hd-dot'), num = $q('#hsn'), ttl = $q('#hst'), n = dots.length, dist = 0, last = -1;
-      var mq = window.matchMedia('(max-width: 860px)');
-      function mark(k) { if (k === last) return; last = k; num.textContent = '0' + (k + 1); ttl.textContent = SERVICES[k].t; [].forEach.call(dots, function (d, j) { if (j === k) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); }); }
-      function native() { return mq.matches || reduce; }
-      function update() {
-        if (native()) { var cw = track.firstElementChild ? track.firstElementChild.offsetWidth + 24 : 1; mark(Math.min(n - 1, Math.round(view.scrollLeft / cw))); return; }
-        var r = run.getBoundingClientRect(), span = run.offsetHeight - stick.offsetHeight, p = span > 0 ? Math.min(1, Math.max(0, (pinTop - r.top) / span)) : 0;
-        track.style.transform = 'translate3d(' + (-p * dist).toFixed(1) + 'px,0,0)';
-        mark(Math.round(p * (n - 1)));
-      }
-      function size() {
-        if (native()) { run.classList.add('native'); run.style.height = ''; stick.style.top = ''; track.style.transform = ''; update(); return; }
-        run.classList.remove('native'); dist = Math.max(0, track.scrollWidth - view.clientWidth); pinTop = Math.max(72, Math.round((window.innerHeight - stick.offsetHeight) / 2 + 24)); stick.style.top = pinTop + 'px'; run.style.height = (stick.offsetHeight + dist) + 'px'; update();
-      }
-      on(window, 'scroll', update, { passive: true }); on(window, 'resize', size); on(view, 'scroll', function () { if (native()) update(); }, { passive: true });
-      [].forEach.call(dots, function (d) { on(d, 'click', function () { var k = +d.dataset.i; if (native()) { var c = track.children[k]; view.scrollTo({ left: c.offsetLeft - track.firstElementChild.offsetLeft, behavior: reduce ? 'auto' : 'smooth' }); return; } var span = run.offsetHeight - stick.offsetHeight, top = run.getBoundingClientRect().top + window.pageYOffset + (k / (n - 1)) * span; window.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' }); }); });
-      size(); setTimeout(size, 500); window.addEventListener('load', size, { once: true });
-    }
-    /* tilted cards straighten toward the middle of the screen */
-    var fcs = app.querySelectorAll('.svf-card');
-    if (fcs.length) {
-      var raf = 0;
-      function tilt() { raf = 0; var vh = window.innerHeight; [].forEach.call(fcs, function (c) { var r = c.getBoundingClientRect(), mid = r.top + r.height / 2, t = reduce ? 0 : Math.min(1, Math.abs(mid - vh * .52) / (vh * .55)), base = parseFloat(c.style.getPropertyValue('--t')) || 0; c.style.setProperty('--rot', (base * t).toFixed(2) + 'deg'); }); }
-      function qt() { if (!raf) raf = requestAnimationFrame(tilt); }
-      on(window, 'scroll', qt, { passive: true }); on(window, 'resize', qt); tilt();
-    }
-    /* search and format filter */
-    var mg = $q('#mg');
-    if (mg) {
-      var q = $q('#svq'), cards = [].slice.call(mg.children), chips = [].slice.call(app.querySelectorAll('.mchips button')), none = $q('#mnone'), f = 'All';
-      function apply() { var t = q.value.trim().toLowerCase(), shown = 0; cards.forEach(function (c) { var ok = (f === 'All' || c.dataset.f === f) && (!t || c.dataset.q.indexOf(t) > -1); c.classList.toggle('off', !ok); if (ok) shown++; }); none.hidden = shown > 0; }
-      on(q, 'input', apply);
-      chips.forEach(function (b) { on(b, 'click', function () { f = b.dataset.f; chips.forEach(function (x) { x.setAttribute('aria-pressed', x === b); }); apply(); }); });
-      if (!reduce) {
-        var words = ['coaching', 'certification', 'catalyst', 'live classes'], wi = 0, ci = 0, up = true, timer = 0, stop = false;
-        function type() { if (stop) return; var w = words[wi]; if (up) { ci++; if (ci > w.length) { up = false; timer = setTimeout(type, 1400); return; } } else { ci--; if (ci < 0) { up = true; ci = 0; wi = (wi + 1) % words.length; } } q.placeholder = 'Search ' + (ci > 0 ? w.slice(0, ci) : 'services'); timer = setTimeout(type, up ? 90 : 40); }
-        function halt() { stop = true; clearTimeout(timer); q.placeholder = 'Search services'; }
-        on(q, 'focus', halt); cleanup.push(function () { stop = true; clearTimeout(timer); }); timer = setTimeout(type, 1200);
-      }
-    }
+  var S = { view: 'category', grp: 'all', q: '', fmt: {}, fac: {}, price: 'any', sort: 'featured', lay: 'grid' };
+  var BANDS = [['any', 'Any price'], ['lt50', 'Under $50'], ['mid', '$50 to $299'], ['gt300', '$300 and up']];
+  var cartN = 0, toastT = 0; try { cartN = parseInt(localStorage.getItem('tsl-cart'), 10) || 0; } catch (e) { }
+  function band(p) { return p.price < 50 ? 'lt50' : p.price < 300 ? 'mid' : 'gt300'; }
+  function gd() { return S.view === 'category' ? 'cat' : 'pub'; }
+  function fd() { return S.view === 'category' ? 'pub' : 'cat'; }
+  function gname(k) { return S.view === 'category' ? k : PUBS[k].n; }
+  function fname(k) { return S.view === 'category' ? PUBS[k].n : k; }
+  function ok(p, skip) {
+    if (skip !== 'grp' && S.grp !== 'all' && p[gd()] !== S.grp) return false;
+    if (skip !== 'q' && S.q && p.hay.indexOf(S.q) < 0) return false;
+    if (skip !== 'fmt' && Object.keys(S.fmt).length && !S.fmt[p.fmt]) return false;
+    if (skip !== 'price' && S.price !== 'any' && band(p) !== S.price) return false;
+    if (skip !== 'fac' && Object.keys(S.fac).length && !S.fac[p[fd()]]) return false;
+    return true;
   }
+  function money(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }); }
+  function price(p) { return (p.reg > p.price ? '<s class="was">' + money(p.reg) + '</s>' : '') + '<span class="now">' + money(p.price) + '</span>'; }
+  function hl(t) { var q = S.q; if (!q) return esc(t); var lo = t.toLowerCase(), out = '', a = 0, k; while ((k = lo.indexOf(q, a)) > -1) { out += esc(t.slice(a, k)) + '<mark>' + esc(t.slice(k, k + q.length)) + '</mark>'; a = k + q.length; } return out + esc(t.slice(a)); }
+  function sorted(l) { var a = l.slice(); if (S.sort === 'az') a.sort(function (x, y) { return x.t.localeCompare(y.t); }); else if (S.sort === 'plh') a.sort(function (x, y) { return x.price - y.price; }); else if (S.sort === 'phl') a.sort(function (x, y) { return y.price - x.price; }); return a; }
+  function slug(p) { return p.code ? p.code.toLowerCase() : 'p' + p.id; }
+  function sec(p) { return S.view === 'category' ? PUBS[p.pub].n : p.cat; }
+  function addBtn(p) { return '<button class="pc-add" type="button" data-add="' + p.id + '" aria-label="Add ' + esc(p.t) + ' to cart">' + i('pl') + '<span>Add</span></button>'; }
+  function cover(p) { return p.img ? '<span class="bk">' + img(p.img, 'Cover of ' + p.t, 'loading="lazy"') + '</span>' : '<span class="gc">' + '<span>' + esc(PUBS[p.pub].n) + '</span>' + fi(p.fmt) + '<span>' + p.fmt + '</span></span>'; }
+  function card(p) {
+    return '<article class="pc" style="--gc:' + PUBS[p.pub].tint + '"><div class="pc-cv">' + cover(p) + (p.code ? '<span class="cc">' + p.code + '</span>' : '') + '</div><div class="pc-b"><span class="pc-k">' + hl(sec(p)) + '</span><h3><a class="pc-t" href="product.html#' + slug(p) + '">' + hl(p.t) + '</a></h3><span class="pc-f">' + p.fmt + '</span></div><div class="pc-r"><span class="price">' + price(p) + '</span>' + addBtn(p) + '</div></article>';
+  }
+  function row(p) {
+    var th = p.img ? img(p.img, '', 'loading="lazy"') : fi(p.fmt);
+    return '<div class="pr" style="--gc:' + PUBS[p.pub].tint + '"><span class="th">' + th + '</span><div><h3><a class="pc-t" href="product.html#' + slug(p) + '">' + hl(p.t) + '</a></h3><span class="m-s">' + hl(sec(p)) + '</span></div><span class="pc-f">' + p.fmt + '</span><span class="m m-p">' + hl(sec(p)) + '</span><span class="price">' + price(p) + '</span>' + addBtn(p) + '</div>';
+  }
+  function section(k, items) {
+    var pub = S.view === 'publisher', pb = pub ? PUBS[k] : null;
+    var head = '<div class="pl-gh"><div><h2>' + esc(gname(k)) + '<small>' + items.length + (items.length === 1 ? ' product' : ' products') + '</small></h2>' + (pub ? '<p>' + esc(pb.by) + '</p>' : '') + '</div>' + (pub ? img(pb.logo, pb.n + ' logo') : '') + '</div>';
+    var body = S.lay === 'grid' ? '<div class="pl-cards">' + items.map(card).join('') + '</div>' : '<div class="pl-rows"><div class="pr hd-r" aria-hidden="true"><span></span><span>Product</span><span>Format</span><span>' + (pub ? 'Category' : 'Publisher') + '</span><span>Price</span><span></span></div>' + items.map(row).join('') + '</div>';
+    return '<section class="pl-g" aria-label="' + esc(gname(k)) + '">' + head + body + '</section>';
+  }
+  function opt(v, label, n, on) { return '<button class="pl-opt' + (n ? '' : ' z') + '" type="button" data-g="' + esc(v) + '" data-fk="g:' + esc(v) + '" aria-pressed="' + on + '"><span>' + esc(label) + '</span><em>' + n + '</em></button>'; }
+  function ck(t, v, label, n, on) { return '<label class="pl-ck' + (n || on ? '' : ' z') + '"><input type="checkbox" data-t="' + t + '" data-v="' + esc(v) + '" data-fk="' + t + ':' + esc(v) + '"' + (on ? ' checked' : '') + '><span>' + esc(label) + '</span><em>' + n + '</em></label>'; }
+  function cnt(skip, f) { var n = 0; P.forEach(function (p) { if (ok(p, skip) && f(p)) n++; }); return n; }
+  function railHtml(total) {
+    var cat = S.view === 'category', keys = cat ? CATS : PUB_ORDER, all = cnt('grp', function () { return true; });
+    var h = '<div class="pl-sh"><h2>Filters</h2><button class="pl-x" type="button" data-act="close" aria-label="Close filters">' + i('x') + '</button></div>';
+    h += '<div class="pl-fs"><h3>' + (cat ? 'Category' : 'Publisher') + '</h3><div class="pl-opts">' + opt('all', cat ? 'All categories' : 'All publishers', all, S.grp === 'all') + keys.map(function (k) { return opt(k, gname(k), cnt('grp', function (p) { return p[gd()] === k; }), S.grp === k); }).join('') + '</div></div>';
+    h += '<div class="pl-fs"><h3>Format</h3>' + FMTS.map(function (f) { return ck('fmt', f, f, cnt('fmt', function (p) { return p.fmt === f; }), !!S.fmt[f]); }).join('') + '</div>';
+    h += '<div class="pl-fs"><h3>Price</h3>' + BANDS.map(function (b) { var n = b[0] === 'any' ? cnt('price', function () { return true; }) : cnt('price', function (p) { return band(p) === b[0]; }); return '<label class="pl-ck' + (n || S.price === b[0] ? '' : ' z') + '"><input type="radio" name="price" data-t="price" data-v="' + b[0] + '" data-fk="price:' + b[0] + '"' + (S.price === b[0] ? ' checked' : '') + '><span>' + b[1] + '</span><em>' + n + '</em></label>'; }).join('') + '</div>';
+    var fk = cat ? PUB_ORDER : CATS;
+    h += '<div class="pl-fs"><h3>' + (cat ? 'Publisher' : 'Category') + '</h3><div class="pl-facet">' + fk.map(function (k) { return ck('fac', k, fname(k), cnt('fac', function (p) { return p[fd()] === k; }), !!S.fac[k]); }).join('') + '</div></div>';
+    h += '<div class="pl-sf"><button class="btn" type="button" data-act="close">Show ' + total + (total === 1 ? ' product' : ' products') + '</button></div>';
+    return h;
+  }
+  function chips() {
+    var c = [];
+    if (S.grp !== 'all') c.push(['grp', S.grp, gname(S.grp)]);
+    if (S.q) c.push(['q', '', '“' + S.q + '”']);
+    Object.keys(S.fmt).forEach(function (f) { c.push(['fmt', f, f]); });
+    if (S.price !== 'any') c.push(['price', '', BANDS.filter(function (b) { return b[0] === S.price; })[0][1]]);
+    Object.keys(S.fac).forEach(function (k) { c.push(['fac', k, fname(k)]); });
+    return c;
+  }
+  function update() {
+    var list = P.filter(function (p) { return ok(p); }), total = list.length, ch = chips();
+    var keys = S.view === 'category' ? CATS : PUB_ORDER, h = '', groups = 0;
+    keys.forEach(function (k) { var items = sorted(list.filter(function (p) { return p[gd()] === k; })); if (items.length) { groups++; h += section(k, items); } });
+    if (!total) h = '<div class="pl-empty"><h3>No products match</h3><p>Try a different word, or remove a filter to widen the list.</p><button class="btn" type="button" data-act="clear">Clear all filters</button></div>';
+    var noun = S.view === 'category' ? (groups === 1 ? 'category' : 'categories') : (groups === 1 ? 'publisher' : 'publishers');
+    var meta = ch.length ? 'Showing <b>' + total + '</b> of <b>' + P.length + '</b> products' : '<b>' + total + '</b> products in <b>' + groups + '</b> ' + noun;
+    var chh = ch.map(function (c) { return '<button class="pl-chip" type="button" data-rm="' + c[0] + '" data-v="' + esc(c[1]) + '" aria-label="Remove filter ' + esc(c[2]) + '">' + esc(c[2]) + i('x') + '</button>'; }).join('') + (ch.length > 1 ? '<button class="pl-clear" type="button" data-act="clear">Clear all</button>' : '');
+    var fk = document.activeElement && document.activeElement.getAttribute && document.activeElement.getAttribute('data-fk');
+    $('pl-rail').innerHTML = railHtml(total);
+    if (fk) { var el = $('pl-rail').querySelector('[data-fk="' + fk.replace(/"/g, '\\"') + '"]'); if (el) el.focus({ preventScroll: true }); }
+    $('pl-res').innerHTML = '<div class="pl-meta"><p class="pl-n" aria-live="polite">' + meta + '</p><div class="pl-chips">' + chh + '</div></div>' + h;
+    [].forEach.call(app.querySelectorAll('.pl-sw button'), function (b) { b.setAttribute('aria-selected', String(b.dataset.view === S.view)); b.tabIndex = b.dataset.view === S.view ? 0 : -1; });
+    [].forEach.call(app.querySelectorAll('.pl-lay button'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.lay === S.lay)); });
+    var fb = $('pl-fcount'), nf = ch.filter(function (c) { return c[0] !== 'q'; }).length; fb.textContent = nf; fb.hidden = !nf;
+    $('pl-res').setAttribute('aria-labelledby', 'tab-' + S.view);
+  }
+  function $(id) { return document.getElementById(id); }
+  function setView(v) {
+    if (v === S.view) return;
+    var og = S.grp, of = Object.keys(S.fac);
+    S.grp = of.length === 1 ? of[0] : 'all'; S.fac = {}; if (og !== 'all') S.fac[og] = 1;
+    S.view = v; update();
+  }
+  function viewFromHash() { return location.hash === '#by-publisher' ? 'publisher' : 'category'; }
+  function clearAll() { S.grp = 'all'; S.q = ''; S.fmt = {}; S.fac = {}; S.price = 'any'; $('pl-q').value = ''; update(); }
+  function toast(name) {
+    var t = $('pl-toast'); t.innerHTML = '<span>Added: ' + esc(name) + '</span><a href="#">Cart (' + cartN + ')</a>'; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove('on'); }, 2800);
+  }
+  function addToCart(btn) {
+    var p = P[+btn.dataset.add]; cartN++; try { localStorage.setItem('tsl-cart', cartN); } catch (e) { }
+    var b = app.querySelector('.b-cart b'); b.textContent = cartN; app.querySelector('.b-cart').setAttribute('aria-label', 'Cart (' + cartN + ')');
+    toast(p.t);
+    btn.classList.add('done'); btn.innerHTML = i('ck') + '<span>Added</span>';
+    setTimeout(function () { if (btn.isConnected) { btn.classList.remove('done'); btn.innerHTML = i('pl') + '<span>Add</span>'; } }, 1500);
+  }
+  function openSheet() { $('pl-rail').classList.add('open'); $('pl-bd').classList.add('open'); document.body.style.overflow = 'hidden'; var x = $('pl-rail').querySelector('.pl-x'); if (x) x.focus(); }
+  function closeSheet() { $('pl-rail').classList.remove('open'); $('pl-bd').classList.remove('open'); if (!app.querySelector('.drawer.open')) document.body.style.overflow = ''; }
+  function toResults() { var y = $('pl-res').getBoundingClientRect().top + window.pageYOffset - 150; window.scrollTo({ top: Math.max(0, y), behavior: reduce ? 'auto' : 'smooth' }); }
+  function route(text) {
+    var c = CATS.filter(function (x) { return text.indexOf(x) === 0; })[0];
+    if (c) { goTo('category', c); return true; }
+    if (/Sollah/.test(text)) { goTo('publisher', 'sollah'); return true; }
+    if (/Wiley|publishers/i.test(text)) { goTo('publisher', 'all'); return true; }
+    if (/categories/i.test(text)) { goTo('category', 'all'); return true; }
+    return false;
+  }
+  function goTo(v, g) { S.view = v; S.grp = g; S.fac = {}; if (location.hash !== '#by-' + v) { try { history.replaceState(null, '', '#by-' + v); } catch (e) { } } update(); toResults(); }
+
+  function render() {
+    cleanup.forEach(function (f) { f(); }); cleanup = [];
+    d = D.h; key = 'h'; AR = i(d.ar); fonts(d.f);
+    app.setAttribute('data-d', 'h'); app.className = 'ar-d';
+    document.body.style.setProperty('--page', d.page);
+    try { S.lay = localStorage.getItem('pl-lay') === 'list' ? 'list' : 'grid'; } catch (e) { }
+    S.view = viewFromHash();
+    try { var gt = JSON.parse(sessionStorage.getItem('tsl-goto') || 'null'); if (gt) { sessionStorage.removeItem('tsl-goto'); S.view = gt.view; S.grp = gt.grp; } } catch (e) { }
+    var bh = bar().replace('<span class="pv-k">19</span>', '<span class="pv-k">' + TOPICS[0][1] + '</span>').replace('<p class="pv-n">Harassment</p>', '<p class="pv-n">' + esc(TOPICS[0][0]) + '</p>');
+    var head = '<div class="wrap pl-head"><div class="pl-top"><div><p class="pl-kick fade-up" style="--dl:.05s">Products</p><h1 class="pl-h1 fade-up" style="--dl:.15s">Find the right <em>product</em>.</h1><p class="pl-sub fade-up" style="--dl:.3s">Assessments, eCourses, facilitation kits and certifications from Wiley and Sollah. Browse by category or by publisher.</p></div><div class="pl-stats fade-up" style="--dl:.4s"><div><b>' + P.length + '</b><span>Products</span></div><div><b>' + CATS.length + '</b><span>Categories</span></div><div><b>' + PUB_ORDER.length + '</b><span>Publishers</span></div></div></div>' + '</div>';
+    var tb = '<div class="pl-bar" id="pl-bar"><div class="wrap pl-bar-in"><div class="pl-sw" role="tablist" aria-label="Browse products by"><button type="button" role="tab" id="tab-category" data-view="category" aria-controls="pl-res">By category <small>' + CATS.length + '</small></button><button type="button" role="tab" id="tab-publisher" data-view="publisher" aria-controls="pl-res">By publisher <small>' + PUB_ORDER.length + '</small></button></div><label class="pl-s">' + i('s') + '<input id="pl-q" type="search" placeholder="Search products, formats or codes" aria-label="Search products" autocomplete="off"><kbd aria-hidden="true">/</kbd></label><span class="pl-sp"></span><button class="pl-fb" id="pl-fb" type="button">' + i('sl') + 'Filters<b id="pl-fcount" hidden>0</b></button><label class="pl-sel"><span class="sr">Sort by</span><select id="pl-sort"><option value="featured">Featured</option><option value="az">Name, A to Z</option><option value="plh">Price, low to high</option><option value="phl">Price, high to low</option></select>' + i('dn') + '</label><div class="pl-lay" role="group" aria-label="Layout"><button type="button" data-lay="grid" aria-label="Grid view">' + i('gr') + '</button><button type="button" data-lay="list" aria-label="List view">' + i('ls') + '</button></div></div></div>';
+    app.innerHTML = '<header class="hd pl-hd" id="top">' + bh + head + '</header><main>' + tb + '<div class="wrap pl-body"><aside class="pl-rail" id="pl-rail" aria-label="Filters"></aside><div id="pl-res" role="tabpanel"></div></div></main><div class="pl-bd" id="pl-bd"></div>' + footer() + drawer() + '<div class="pl-toast" id="pl-toast" role="status" aria-live="polite"></div>';
+    wire(); update();
+    if (cartN) { app.querySelector('.b-cart b').textContent = cartN; app.querySelector('.b-cart').setAttribute('aria-label', 'Cart (' + cartN + ')'); }
+  }
+
   function wire() {
-    svcMotion();
     var barEl = document.getElementById('bar'), hero = app.querySelector('.hd');
-    /* menus */
-    var items = Array.prototype.slice.call(app.querySelectorAll('.nv-i')), hov = window.matchMedia('(hover: hover)').matches, tm;
+    var items = [].slice.call(app.querySelectorAll('.nv-i')), hov = window.matchMedia('(hover: hover)').matches, tm;
     function closeAll(ex) { items.forEach(function (it) { if (it !== ex) { it.classList.remove('open'); it.firstChild.setAttribute('aria-expanded', 'false'); } }); }
     function open(it) { closeAll(it); it.classList.add('open'); it.firstChild.setAttribute('aria-expanded', 'true'); }
     items.forEach(function (it) {
@@ -2234,142 +2398,62 @@ header.hd > .hpart { margin-top: 0; }
       });
     });
     on(document, 'click', function (ev) { if (!ev.target.closest('.nv')) closeAll(); });
-    on(document, 'keydown', function (ev) { if (ev.key === 'Escape') { closeAll(); shut(); } });
-    /* mega preview pane */
-    var pv = app.querySelector('.mm-pv');
-    if (pv && d.mm === 'preview') {
-      var cs = app.querySelectorAll('.mm-c'), pk = pv.querySelector('.pv-k'), pn = pv.querySelector('.pv-n'), pi = pv.querySelector('.pv-ic');
-      cs[0].setAttribute('aria-current', 'true');
-      cs.forEach(function (c) {
-        function show() { var k = +c.getAttribute('data-k'); if (pk.textContent === String(TOPICS[k][1]) && pn.textContent === TOPICS[k][0]) return; cs.forEach(function (o) { o.removeAttribute('aria-current'); }); c.setAttribute('aria-current', 'true'); pk.textContent = TOPICS[k][1]; pn.textContent = TOPICS[k][0]; pi.innerHTML = ti(k); pv.classList.remove('flip'); void pv.offsetWidth; pv.classList.add('flip'); }
-        on(c, 'mouseenter', show); on(c, 'focus', show);
-      });
-    }
-    /* drawer */
     var dr = app.querySelector('.drawer');
     function shut() { if (dr.classList.contains('open')) { dr.classList.remove('open'); document.body.style.overflow = ''; } }
     on(app.querySelector('.bar .burger'), 'click', function () { dr.classList.add('open'); document.body.style.overflow = 'hidden'; dr.querySelector('.dr-x').focus(); });
     on(dr.querySelector('.dr-x'), 'click', shut);
-    on(dr, 'click', function (ev) { if (ev.target.closest('a')) shut(); });
     cleanup.push(function () { document.body.style.overflow = ''; });
-    /* sticky bar that hides on the way down and returns on the way up */
-    var lastY = window.scrollY, ticking = false, pars = Array.prototype.slice.call(app.querySelectorAll('[data-par]'));
+    on(document, 'keydown', function (ev) {
+      if (ev.key === 'Escape') { closeAll(); shut(); closeSheet(); }
+      else if (ev.key === '/' && !/INPUT|TEXTAREA|SELECT/.test((document.activeElement || {}).tagName || '')) { ev.preventDefault(); $('pl-q').focus(); }
+    });
+    var lastY = window.scrollY, ticking = false;
     function onScroll() {
       var y = window.scrollY, past = y > hero.offsetHeight - 40;
       if (past !== barEl.classList.contains('stuck')) { if (past) barEl.classList.add('away'); else barEl.classList.remove('away'); barEl.classList.toggle('stuck', past); }
-      if (past) { var open = items.some(function (it) { return it.classList.contains('open'); }); if (open || y < lastY - 4) barEl.classList.remove('away'); else if (y > lastY + 4) barEl.classList.add('away'); }
+      if (past) { var o = items.some(function (it) { return it.classList.contains('open'); }); if (o || y < lastY - 4) barEl.classList.remove('away'); else if (y > lastY + 4) barEl.classList.add('away'); }
       lastY = y;
-      if (!reduce) pars.forEach(function (el) { if (y < hero.offsetHeight + 200) el.style.transform = 'translate3d(0,' + (-y * parseFloat(el.getAttribute('data-par'))).toFixed(1) + 'px,0)'; });
+      var vis = barEl.classList.contains('stuck') && !barEl.classList.contains('away');
+      app.style.setProperty('--pt', vis ? 'calc(70px + env(safe-area-inset-top, 0px))' : 'env(safe-area-inset-top, 0px)');
       ticking = false;
     }
     on(window, 'scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
     onScroll();
-    /* in-page links */
-    on(app, 'click', function (e) {
-      var a = e.target.closest('a[href^="#"]'); if (!a) return; var h = a.getAttribute('href'); e.preventDefault();
-      if (h === '#top') window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); else if (h.length > 1) { closeAll(); go(h.slice(1)); }
-    });
-    on(app.querySelector('.hs'), 'submit', function (e) { e.preventDefault(); go('courses'); });
-    /* book tilt that follows the pointer */
-    if (d.tilt && hov && !reduce) app.querySelectorAll('.courses .c').forEach(function (c) {
-      var b = c.querySelector('.bk');
-      on(c, 'pointermove', function (e) { var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; b.style.transform = 'rotateY(' + (x * 22).toFixed(1) + 'deg) rotateX(' + (-y * 14).toFixed(1) + 'deg) translateZ(20px)'; });
-      on(c, 'pointerleave', function () { b.style.transform = ''; });
-    });
-    /* rail */
-    var rail = app.querySelector('.rail');
-    if (rail) {
-      var bar2 = app.querySelector('.rail-pg span');
-      function prog() { var m = rail.scrollWidth - rail.clientWidth; var w = rail.clientWidth / rail.scrollWidth; bar2.style.width = (w * 100) + '%'; bar2.style.transform = 'translateX(' + (m > 0 ? rail.scrollLeft / m * (1 / w - 1) * 100 : 0) + '%)'; }
-      on(rail, 'scroll', prog, { passive: true }); on(window, 'resize', prog); prog();
-      app.querySelectorAll('.rn button').forEach(function (b) { on(b, 'click', function () { rail.scrollBy({ left: +b.getAttribute('data-dir') * (rail.querySelector('.c').offsetWidth + 20) * 2, behavior: reduce ? 'auto' : 'smooth' }); }); });
-      var down = false, sx = 0, sl = 0, moved = false;
-      on(rail, 'pointerdown', function (e) { if (e.pointerType !== 'mouse') return; down = true; moved = false; sx = e.clientX; sl = rail.scrollLeft; rail.classList.add('drag'); });
-      on(window, 'pointermove', function (e) { if (!down) return; var dx = e.clientX - sx; if (Math.abs(dx) > 4) moved = true; rail.scrollLeft = sl - dx; });
-      on(window, 'pointerup', function () { down = false; rail.classList.remove('drag'); });
-      on(rail, 'click', function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
-    }
-    /* course list with preview */
-    var cpv = app.querySelector('.clist .pv');
-    if (cpv) {
-      var rows = app.querySelectorAll('.clist .r');
-      var show = function (k) { var c = COURSES[k]; rows.forEach(function (r) { r.classList.toggle('on', +r.getAttribute('data-i') === k); }); cpv.innerHTML = '<div class="pvc">' + img(c.img, c.alt) + '</div><div class="pvb"><span class="pvt">' + esc(c.topic) + '</span><h3>' + esc(c.title) + '</h3><div class="pvf"><span class="price">' + pr(c) + '</span><a class="btn" href="#">View course' + i('r') + '</a></div></div>'; };
-      rows.forEach(function (r) { var k = +r.getAttribute('data-i'); on(r, 'mouseenter', function () { show(k); }); on(r, 'focus', function () { show(k); }); });
-      show(0);
-    }
-    /* services: accordion */
-    var aps = app.querySelectorAll('.acc .ap');
-    aps.forEach(function (p) { function act() { aps.forEach(function (o) { o.classList.toggle('on', o === p); }); } on(p, 'mouseenter', act); on(p, 'focus', act); });
-    /* services: tabs */
-    var tabs = Array.prototype.slice.call(app.querySelectorAll('.tb-l [role=tab]'));
-    tabs.forEach(function (t, k) {
-      function sel(f) { tabs.forEach(function (o, n) { o.setAttribute('aria-selected', String(n === k)); o.tabIndex = n === k ? 0 : -1; document.getElementById('tp-' + n).hidden = n !== k; }); if (f) t.focus(); }
-      on(t, 'click', function () { sel(); }); if (hov) on(t, 'mouseenter', function () { sel(); });
-      on(t, 'keydown', function (e) { var n = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0; if (n) { e.preventDefault(); tabs[(k + n + tabs.length) % tabs.length].click(); tabs[(k + n + tabs.length) % tabs.length].focus(); } });
-    });
-    /* services: rows with image swap */
-    var srows = app.querySelectorAll('.srows .s');
-    if (srows.length) {
-      var vimgs = app.querySelectorAll('.srows .viz img');
-      var act = function (k) { srows.forEach(function (r, n) { r.classList.toggle('on', n === k); r.setAttribute('aria-expanded', String(n === k)); }); vimgs.forEach(function (m, n) { m.classList.toggle('on', n === k); }); };
-      var cur = 0, tm = null, paused = false, auto = key === 'j' && !reduce;
-      var act0 = act; act = function (k) { cur = k; act0(k); if (auto) restart(); };
-      function restart() { var l = app.querySelector('.srows .lst'); if (!l) return; l.classList.remove('tick'); void l.offsetWidth; if (!paused) l.classList.add('tick'); clearTimeout(tm); if (paused) return; tm = setTimeout(function () { var r = app.querySelector('.srows'); var b = r && r.getBoundingClientRect(); if (b && b.bottom > 0 && b.top < innerHeight) act((cur + 1) % srows.length); else restart(); }, 5200); }
-      if (auto) { var box = app.querySelector('.srows'); on(box, 'mouseenter', function () { paused = true; clearTimeout(tm); var l = box.querySelector('.lst'); l.classList.remove('tick'); }); on(box, 'mouseleave', function () { paused = false; restart(); }); on(box, 'focusin', function () { paused = true; clearTimeout(tm); }); on(box, 'focusout', function () { paused = false; restart(); }); cleanup.push(function () { clearTimeout(tm); }); restart(); }
-      srows.forEach(function (r, k) { on(r, 'mouseenter', function () { act(k); }); on(r, 'focus', function () { act(k); }); on(r, 'click', function () { act(k); }); on(r, 'keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); act(k); } }); });
-    }
-    /* services: image that follows the cursor */
-    var rvl = app.querySelector('.rvl');
-    if (rvl && hov && !reduce) {
-      var flt = rvl.querySelector('.flt'), fim = flt.querySelectorAll('img'), fx = 0, fy = 0, tx = 0, ty = 0, raf = 0;
-      function loop() { fx += (tx - fx) * .16; fy += (ty - fy) * .16; flt.style.transform = 'translate3d(' + fx.toFixed(1) + 'px,' + fy.toFixed(1) + 'px,0) rotate(' + ((tx - fx) * .04).toFixed(2) + 'deg)'; raf = requestAnimationFrame(loop); }
-      on(rvl, 'pointerenter', function (e) { var r = rvl.getBoundingClientRect(); fx = tx = e.clientX - r.left; fy = ty = e.clientY - r.top; flt.classList.add('on'); cancelAnimationFrame(raf); loop(); });
-      on(rvl, 'pointermove', function (e) { var r = rvl.getBoundingClientRect(); tx = e.clientX - r.left; ty = e.clientY - r.top; });
-      on(rvl, 'pointerleave', function () { flt.classList.remove('on'); cancelAnimationFrame(raf); });
-      rvl.querySelectorAll('.rr').forEach(function (r, k) { on(r, 'mouseenter', function () { fim.forEach(function (m, n) { m.classList.toggle('on', n === k); }); }); });
-      cleanup.push(function () { cancelAnimationFrame(raf); });
-    }
-    /* pixel dither circle (Maze) */
-    var px = app.querySelector('canvas.px');
-    if (px) {
-      var ctx = px.getContext('2d'), raf2 = 0, t0 = performance.now();
-      function draw(t) {
-        var w = px.clientWidth, h = px.clientHeight, dpr = Math.min(2, window.devicePixelRatio || 1);
-        if (px.width !== Math.round(w * dpr)) { px.width = Math.round(w * dpr); px.height = Math.round(h * dpr); }
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
-        var s = 12, cx = w / 2, cy = h / 2, R = Math.min(w, h) * .48, ph = (t - t0) / 1400;
-        for (var y = 0; y < h; y += s) for (var x = 0; x < w; x += s) {
-          var dx = x + s / 2 - cx, dy = y + s / 2 - cy, r = Math.sqrt(dx * dx + dy * dy) / R; if (r > 1.08) continue;
-          var n = (Math.sin(x * .07 + ph) + Math.cos(y * .05 - ph * .8)) * .07, v = 1 - r + n;
-          if (v > .55) ctx.fillStyle = '#9CC8F2'; else if (v > .3) ctx.fillStyle = '#CFE5F9'; else if (v > .08 && ((x / s + y / s) % 2 === 0)) ctx.fillStyle = '#E6F1FC'; else continue;
-          ctx.fillRect(x + 1, y + 1, s - 2, s - 2);
-        }
-        if (!reduce) raf2 = requestAnimationFrame(draw);
-      }
-      raf2 = requestAnimationFrame(draw); cleanup.push(function () { cancelAnimationFrame(raf2); });
-    }
-    /* colour logos: lift the white paper out so only the mark shows on the dark hero */
-    app.querySelectorAll('.hpart img.lc').forEach(function (im) { function go() { if (im.dataset.done) return; im.dataset.done = 1; try { var c = document.createElement('canvas'); c.width = im.naturalWidth; c.height = im.naturalHeight; var x = c.getContext('2d'); x.drawImage(im, 0, 0); var d = x.getImageData(0, 0, c.width, c.height), p = d.data; for (var n = 0; n < p.length; n += 4) { var m = Math.min(p[n], p[n + 1], p[n + 2]), a = 1 - m / 255; if (a < .04) { p[n + 3] = 0; continue; } for (var j = 0; j < 3; j++) p[n + j] = Math.max(0, Math.min(255, (p[n + j] - 255 * (1 - a)) / a)); p[n + 3] = Math.round(a * 255); } x.putImageData(d, 0, 0); im.src = c.toDataURL('image/png'); } catch (e) {} } if (im.complete && im.naturalWidth) go(); else im.addEventListener('load', go, { once: true }); });
-    /* wordmarks sized to fill their row exactly */
-    function fit() { app.querySelectorAll('.word, .fword').forEach(function (el) { el.style.fontSize = ''; var cs = getComputedStyle(el), fs = parseFloat(cs.fontSize), avail = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight), r = document.createRange(); r.selectNodeContents(el); var w = r.getBoundingClientRect().width; if (w > 0 && avail > 0) el.style.fontSize = (fs * avail / w * .995).toFixed(2) + 'px'; }); }
-    fit(); if (document.fonts) { document.fonts.ready.then(fit); on(document.fonts, 'loadingdone', fit); } [300, 900, 2000].forEach(function (t) { var id = setTimeout(fit, t); cleanup.push(function () { clearTimeout(id); }); }); var ft; on(window, 'resize', function () { clearTimeout(ft); ft = setTimeout(fit, 120); });
-    /* reveal below the first screen, count up the numbers */
-    if (!reduce && 'IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }); }, { rootMargin: '0px 0px -8% 0px', threshold: .05 });
-      var groups = new Map();
-      app.querySelectorAll('main .sh, .t, .c, .s, .sc, .ap, .rr, .stat, .quote, .learn, .wg > *, .wtop, .wrib, .cta-in, .tabs, .srows, .clist, .tr-in').forEach(function (el) {
-        if (el.getBoundingClientRect().top < window.innerHeight) return;
-        var p = el.parentElement, n = groups.get(p) || 0; groups.set(p, n + 1);
-        el.style.setProperty('--d', Math.min(n, 7) * 60 + 'ms'); el.classList.add('rv'); io.observe(el);
-      });
-      cleanup.push(function () { io.disconnect(); });
-      var cio = new IntersectionObserver(function (es) { es.forEach(function (en) { if (!en.isIntersecting) return; cio.unobserve(en.target); var el = en.target, to = +el.getAttribute('data-n'), pre = el.getAttribute('data-p') || '', s0 = performance.now(); (function step(t) { var p = Math.min(1, (t - s0) / 1300), e2 = 1 - Math.pow(1 - p, 4); el.textContent = pre + Math.round(to * e2); if (p < 1) requestAnimationFrame(step); })(s0); }); }, { threshold: .6 });
-      app.querySelectorAll('[data-n]').forEach(function (el) { if (el.getBoundingClientRect().top > window.innerHeight) cio.observe(el); });
-      cleanup.push(function () { cio.disconnect(); });
-    }
-  }
 
-  render('h');
+    on(app, 'click', function (e) {
+      var t = e.target, el;
+      if ((el = t.closest('[data-add]'))) { addToCart(el); return; }
+      if ((el = t.closest('[data-view]'))) { location.hash = 'by-' + el.dataset.view; return; }
+      if ((el = t.closest('[data-lay]'))) { S.lay = el.dataset.lay; try { localStorage.setItem('pl-lay', S.lay); } catch (x) { } update(); return; }
+      if ((el = t.closest('[data-g]'))) { S.grp = el.dataset.g; update(); return; }
+      if ((el = t.closest('[data-rm]'))) { var r = el.dataset.rm, v = el.dataset.v; if (r === 'grp') S.grp = 'all'; else if (r === 'q') { S.q = ''; $('pl-q').value = ''; } else if (r === 'price') S.price = 'any'; else delete S[r][v]; update(); return; }
+      if ((el = t.closest('[data-act]'))) { if (el.dataset.act === 'clear') clearAll(); else closeSheet(); return; }
+      if (t.closest('#pl-fb')) { openSheet(); return; }
+      if (t.closest('#pl-bd')) { closeSheet(); return; }
+      var a = t.closest('a[href^="#"]'); if (!a) return;
+      e.preventDefault(); var h = a.getAttribute('href'), mc = a.closest('.mm-c');
+      if (h === '#top') { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); return; }
+      closeAll(); shut();
+      if (mc) { goTo('category', TOPICS[+mc.getAttribute('data-k')][0]); return; }
+      if (a.closest('.mm, .drawer')) route(a.textContent.replace(/\s+/g, ' ').trim());
+    });
+    on(app, 'change', function (e) {
+      var t = e.target; if (t.id === 'pl-sort') { S.sort = t.value; update(); return; }
+      var k = t.dataset && t.dataset.t; if (!k) return;
+      if (k === 'price') S.price = t.dataset.v; else if (t.checked) S[k][t.dataset.v] = 1; else delete S[k][t.dataset.v];
+      update();
+    });
+    on(app, 'input', function (e) { if (e.target.id === 'pl-q') { S.q = e.target.value.trim().toLowerCase(); update(); } });
+    on(app, 'keydown', function (e) {
+      if (e.target.id === 'pl-q' && e.key === 'Escape' && e.target.value) { e.target.value = ''; S.q = ''; update(); e.stopPropagation(); }
+      var tab = e.target.closest && e.target.closest('[role=tab]');
+      if (tab && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { e.preventDefault(); var o = app.querySelector('.pl-sw button:not([aria-selected="true"])'); location.hash = 'by-' + o.dataset.view; o.focus(); }
+    });
+    on(window, 'hashchange', function () { setView(viewFromHash()); });
+  }
+  var app = document.getElementById('app'), cleanup = [];
+  function on(el, ev, fn, o) { el.addEventListener(ev, fn, o); cleanup.push(function () { el.removeEventListener(ev, fn, o); }); }
+  render();
 })();
 </script>
 
